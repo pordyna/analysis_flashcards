@@ -1,0 +1,284 @@
+% !TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The first part of the header needs to be copied
+%       into the note options in Anki.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% layout in Anki:
+\documentclass[9pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{paperwidth=.5\paperwidth,paperheight=100in,left=2em,right=2em,bottom=1em,top=2em}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+ 
+% hyphenation:
+\usepackage[ngerman]{babel}
+
+% encoding:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% packages:
+\usepackage{parskip}
+\usepackage[free-standing-units=true]{siunitx}
+% Writng si units, numbers, list of numbers etc.
+\usepackage{gensymb}
+% Unified typseting of units outside of siuitx
+\usepackage{amsmath}
+\usepackage{amsfonts}  
+% Math features
+\usepackage{esdiff}
+% Typeseting of (partial)derivatives 
+\usepackage{commath}
+% More  derivatives. Not so nice like esdiif but adds
+% \dif comand for upright d in math mode.
+\usepackage{bm}
+% Bold font in math mode
+\usepackage{esint}
+% Some fancy integrals signs. Mutilpe integrals
+\usepackage{enumerate}
+% Different styles for enumerate lists
+\usepackage{multirow}
+% More advanced tabular
+\usepackage{physics}
+% Lots of usefull comannds for physicists. Vektors, nablas etc.
+\usepackage{amssymb, xfrac}
+% extra fonts and symbols 
+\usepackage{mathtools}
+% extension to amsmath, fixes, meany new tool
+\usepackage{isotope}
+
+%commands:
+\usepackage{ifthen}
+
+\newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Rk}{\mathbb{R}^k}
+\newcommand{\R}[1]{%
+	\ifthenelse{\equal{#1}{}}
+		{\mathbb{R}}
+		{\mathbb{R}^#1}}%
+\newcommand{\C}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{C}}
+	{\mathbb{C}^#1}}%	
+\renewcommand{\vec}[1]{\underline{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following part of header NOT to be copied into
+%            the note options in Anki.
+%          ! Anki will throw an errow !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  pdf layout:
+%
+\geometry{paperheight=74.25mm}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper,border shrink=0cm]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+% 
+%  notes, fields, tags:
+%
+\newcommand{\xfield}[1]{
+        #1\par
+        \vfill
+        {\tiny\texttt{\parbox[t]{\textwidth}{\localtag\\\globaltag\hfill\uuid}}}
+        \newpage}
+\newenvironment{field}{}{\newpage}
+\newif\ifnote
+\newenvironment{note}{\notetrue}{\notefalse}
+\newcommand{\localtag}{}
+\newcommand{\globaltag}{}
+\newcommand{\uuid}{}
+\newcommand{\tags}[1]{
+    \ifnote 
+        \renewcommand{\localtag}{#1}
+    \else
+        \renewcommand{\globaltag}{#1}
+    \fi 
+    }
+\newcommand{\xplain}[1]{\renewcommand{\uuid}{#1}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following line again needs to be copied 
+% into Anki:
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tags{mathe2::1sem::GDGL}
+
+\begin{note}
+	\xplain{UUID}  %UUID
+	\tags{definition, 3.1.1, 3.1.2}
+	
+	\begin{field}  % Question
+		Definiere  eine gew"ohnliche Differentialgleichung (implizit).
+		Was versteht man unter einer L"osung der DGL?
+	\end{field}  
+	
+	\begin{field}  % Answer
+		Seien G ein Gebiet im $\R{n+2}$, $I$ ein Intervall, eine Funktion $x: I \rightarrow \R{}, 
+		t\rightarrowtail x(t)$ $n$ mal differenzierbar und $F: G \rightarrow \R{}$.
+		Dann hei"st
+		\begin{equation*}
+			F(t,x,\dot{x}, \dots, x^{(n)}) = 0
+		\end{equation*}
+		
+		\textit{implizite} gew"ohnliche DGL der Ordnung $n$. 
+		
+		Sei $x\in C^n$, $x: (a,b) \rightarrowtail \R{}$.  $x$ ist eine L"osung der DGL falls:
+		\begin{enumerate}
+			\item $\qty(t,x(t), \dot{x}(t), \dots x^{(n)}(t)) \in G \qquad \forall_{t\in (a,b)}$, und
+			\item die Gleichung $F=0$ ist erf"uhlt $\forall_{t\in (a,b)}$.
+		\end{enumerate}
+	\end{field}
+	
+	\begin{field}  % Question
+		Definiere  eine gew"ohnliche Differentialgleichung (explizit).
+	\end{field}  
+	
+	\begin{field}  % Answer
+				Sei $\tilde{G}$ ein Gebiet im $\R{n+1}$,  $I$ ein Intervall, eine Funktion $x: I \rightarrow \R, 
+		t\rightarrowtail x(t)$ $n$ mal differenzierbar und $f: \tilde{G} \rightarrow \R{}.$
+		Dann hei"st
+		\begin{equation*}
+			x^{(n)} = f(t,x,\dot{x}, \dots, x^{(n-1)})
+		\end{equation*}
+		\textit{explizite}  gew"ohnliche DGL der Ordnung $n$.
+		
+		Sei $x\in C^n$, $x: (a,b) \rightarrowtail \R{}$.  $x$ ist eine L"osung der DGL falls:
+		\begin{enumerate}
+			\item $\qty(t,x(t), \dot{x}(t), \dots x^{(n-1)}(t)) \in \tilde{G} \qquad \forall_{t\in (a,b)}$, und
+			\item die Gleichung $f=0$ ist erf"uhlt f"ur alle $t\in (a,b)$.
+		\end{enumerate}
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{UUID}  %UUID
+	\tags{definition, 3.1.3}
+	
+	\begin{field}  % Question
+		Ein Anfangswertproblem  hei"st \textit{korrekt gestellt}, wenn..
+	\end{field}  
+	
+	\begin{field}  % Answer
+		genau eine L"osung existiert und eine stetige Abhängigkeit von den Anfangsbedingungen gew"ahrleistet ist. 
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{UUID}  %UUID
+	\tags{GDGL, methode, 3.2.7.1}
+	
+	\begin{field}  % Question
+		Wie l"ost man $\dot{x} + f(t)x = g(t)$ mit der Eulerschen Methode? 
+	\end{field}  
+	
+	\begin{field}  % Answer
+		\begin{itemize}
+			\item Multipliziere mit $\exp(\int_{t_0}^{t}f(t') \dif t')$.
+			\item Fasse LHS als eine Abletiung nach $x$.
+			\item Integriere es auf.
+		\end{itemize}
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{UUID}  %UUID
+	\tags{satz, 3.3 , fixpunkt}
+	
+	\begin{field}  % Question
+		Wie lautet der Banachsche Fixpunktsatz?
+	\end{field}  
+	
+	\begin{field}  % Answer
+		Sei $(X,d)$ vollst"andiger metrischer Raum, sei $A \subseteq X$ abgeschlossen,
+		$T: A \rightarrow A$ kontrahierend mit Konktraktionszahl $q$. Dann:
+		\begin{enumerate}
+			\item $T$ hat genau einen Fixpunkt $x^*$ in $A$,
+			\item f"ur beliebige $x_0 \in A$ konvergiert $x_{n+1} = T{x_n}$ gegen $x^*$ mit $n \in \mathbb{N}$,
+			\item es gilt die Absch"atzung:
+			\begin{equation*}
+				\mathrm{d} (x_n,x^*) \leq \frac{q^n}{1-q}\mathrm{d}(x_1,x_0)
+			\end{equation*} 
+		\end{enumerate}
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{UUID}  %UUID
+	\tags{definition, Lippschitz, 3.4.1, 3.4.8}
+	
+	\begin{field}  % Question
+		 $f:G\subseteq \R{2} \rightarrow \R{} \quad (t,x) \rightarrowtail f(t,x)$ gen"ugt einer
+		 \textit{Lippschitzbedingung} bzg. des 2. Arguments auf $G$, wenn
+	\end{field}  
+	
+	\begin{field}  % Answer
+		$\exists L>0 \quad \forall t, x_1, x_2 \qq{mit} (t,x_1), (t,x_2) \in G$
+		\begin{equation*}
+			 \abs{f((t,x1) - f(t,x_2))} \leq L\abs{x_1 -x_2}
+		\end{equation*}
+	\end{field}
+		
+	\begin{field}  % Question
+		Definiere die Lippschitzbedingung f"ur Vektorfunktionen.
+	\end{field}
+	
+	\begin{field}  % Answer
+		$\vec{f}: \R{n+1} \supseteq D(\vec{f} \rightarrow \R{n} :\  (t,\vec{x}) \rightarrowtail f(t, vec{x})$
+		gen"ugt einer \textit{Lippschitzbedingung} bzgl. $\vec{x}$ in $D(\vec{f})$, wenn
+		$\forall \vec{x}, \vec{y}$ mit $(t,\vec{x}), (t,\vec{y}) \in D(\vec{f}) \qq \exists L >0$:
+		\begin{equation*}
+			\norm{\vec{f}(t,\vec{x}) - \vec{f}(t, \vec{y})}_n \leq L \norm{\vec{x} - \vec{y}}_n
+		\end{equation*}
+		
+		$\norm{\cdot}_n$ ist beliebige Norm in $\Rn$.
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{UUID}
+	\tags{satz, picard-lindeloef, 3.4.2}
+	
+	\begin{field}  % Question
+		Wie lautet der Satz von Picard-Lindel"of "uber die Existenz und Eindeutigkeit der L"osung.
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $\dot{x} = f(t,x)$ mit $x_0= x(t_0)$ ein Anfangswertproblem (AWP) gegeben, $f$ erf"ulle die folgenden Bedingungen:
+		\begin{itemize}
+			\item $\exists a,b \in \R{}_{>0}$ so, dass $f$ auf dem Rechteck
+			\begin{equation*}
+				Q\coloneqq \qty{(t,x) \in \R{2}: \abs{t-t_0} \leq a, \abs{x-x_0} \leq b}
+			\end{equation*}
+			stetig und durch $M$ beschr"ankt ist. 
+			\item $f$ ist auf $Q$ Lippschitzstetig bzg. $x$ mit Lippschitzkonstante $L$. 
+		\end{itemize}
+		Dann existiert geanu eine lokale L"osung des AWP, d.h. $\exists \sigma>0$ so ,dass auf
+			$J\coloneqq \qty[t_0 - \sigma, t_0 + \sigma]$  genau eine L"osung existiert. Man kann $\sigma$ so w"ahlen: $\sigma < \min\qty{a, \frac{b}{m}, \frac{1}{L}}$.
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{UUID}
+	\tags{definition, satz, DGL-System}
+	
+	\begin{field}  % Question
+		
+	\end{field}
+	
+	\begin{field}  % Answer
+		
+	\end{field}
+\end{note}
+
+\end{document}
