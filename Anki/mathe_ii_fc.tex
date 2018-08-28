@@ -1,0 +1,138 @@
+% !TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The first part of the header needs to be copied
+%       into the note options in Anki.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% layout in Anki:
+\documentclass[11pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{paperwidth=.5\paperwidth,paperheight=100in,left=2em,right=2em,bottom=1em,top=2em}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+ 
+% hyphenation:
+\usepackage[ngerman]{babel}
+
+% encoding:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% packages:
+\usepackage[free-standing-units=true]{siunitx}
+% Writng si units, numbers, list of numbers etc.
+\usepackage{gensymb}
+% Unified typseting of units outside of siuitx
+\usepackage{amsmath}
+\usepackage{amsfonts}  
+% Math features
+\usepackage{esdiff}
+% Typeseting of (partial)derivatives 
+\usepackage{commath}
+% More  derivatives. Not so nice like esdiif but adds
+% \dif comand for upright d in math mode.
+\usepackage{bm}
+% Bold font in math mode
+\usepackage{esint}
+% Some fancy integrals signs. Mutilpe integrals
+\usepackage{enumerate}
+% Different styles for enumerate lists
+\usepackage{multirow}
+% More advanced tabular
+\usepackage{physics}
+% Lots of usefull comannds for physicists. Vektors, nablas etc.
+\usepackage{amssymb, xfrac}
+% extra fonts and symbols 
+\usepackage{mathtools}
+% extension to amsmath, fixes, meany new tool
+\usepackage{isotope}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following part of header NOT to be copied into
+%            the note options in Anki.
+%          ! Anki will throw an errow !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  pdf layout:
+%
+\geometry{paperheight=74.25mm}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper,border shrink=0cm]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+% 
+%  notes, fields, tags:
+%
+\newcommand{\xfield}[1]{
+        #1\par
+        \vfill
+        {\tiny\texttt{\parbox[t]{\textwidth}{\localtag\\\globaltag\hfill\uuid}}}
+        \newpage}
+\newenvironment{field}{}{\newpage}
+\newif\ifnote
+\newenvironment{note}{\notetrue}{\notefalse}
+\newcommand{\localtag}{}
+\newcommand{\globaltag}{}
+\newcommand{\uuid}{}
+\newcommand{\tags}[1]{
+    \ifnote 
+        \renewcommand{\localtag}{#1}
+    \else
+        \renewcommand{\globaltag}{#1}
+    \fi 
+    }
+\newcommand{\xplain}[1]{\renewcommand{\uuid}{#1}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following line again needs to be copied 
+% into Anki:
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tags{mathe2::1sem::untermanigfaltigkeiten}
+
+\begin{note}
+  \xplain{2cf30783-9699-47b2-b8a6-ecc059beea33}
+  \tags{definition}
+  \xfield{Wann nennt man eine Abbildung \textit{Diffeomorphismus}?}
+  \begin{field}
+    Seien $U,V \subseteq \mathbb{R}^n$ offen. Eine Abbildung $\Psi : U \rightarrow V$ hei"st \textit{Diffeomorphismus},
+    falls $\Psi$ bijektiv und sowohl $\Psi$ als auch $\Psi^{-1} : V\rightarrow U$ stetig diff'bar sind.
+  \end{field}
+\end{note}
+\begin{note}
+	\xplain{UUID}
+	\tags{definition, 1.1.1}
+	\xfield{Was hei"st es, dass  eine Abbildung \textit{regul"ar} ist?}
+	\begin{field}
+		Sei $T\subseteq \mathbb{R}^n$ offen. Eine Abbildung $\Phi : T \rightarrow \mathbb{R}^n$ hei"st \textit{regul"ar}, falls $\Phi$ injektiv und stetig diff'bar ist, $\Phi'$ den Rang $k$ hat und $\Phi^{-1} : \Phi\qty[T] \rightarrow T$ stetig ist.
+	\end{field}
+	
+\end{note}
+
+\begin{note}
+	\xplain{UUID}
+	\tags{definition, 1.1.2}
+	\begin{field}Eine Teilmenge $M \subseteq \mathbb{R}^n$ hei"st \textit{k-dimensionale Untermannigfaltigkeit} (UM) des
+		$\mathbb{R}^n$, wenn...
+	\end{field}
+	\begin{field}
+		$\forall_a \in M$ $\exists$ offene Mengen $U, V \subseteq \mathbb{R}^n$ mit $a\in U$ 
+		(d.h. $U$ ist offene Umgebung von $a$) und ein Diffeomorphismus $\Psi : U \rightarrow V$ so, dass
+		\begin{align*}
+		\Psi\left[U \cap M \right] &= \left\lbrace (y_1, \dots, y_n) \in V; y_{k+1} = \dots = y_n = 0\right\rbrace \\
+		&= V\cap \qty(\mathbb{R}^k \times 0_{n-k})
+		\end{align*}
+	\end{field}
+	\xfield{Jede $\qty(n-1)$-dim. Untermannigfaltigkeit des $\mathbb{R}^n$ hei"st...}
+	\xfield{\textit{Hyperfl"ache}.}
+\end{note}
+
+\end{document}
