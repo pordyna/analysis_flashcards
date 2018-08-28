@@ -48,7 +48,7 @@
 \usepackage{mathtools}
 % extension to amsmath, fixes, meany new tool
 \usepackage{isotope}
-
+\usepackage{empheq}
 %commands:
 \usepackage{ifthen}
 
@@ -305,4 +305,117 @@
 	\end{field}
 \end{note}
 
+\begin{note}
+	\xplain{UUID}
+	\tags{definition, fortsetzung, 3.5.1}
+	
+	\begin{field}  % Question
+		Definiere den Begriff einer Fortsetzung einer L"osung. 
+	\end{field}
+	
+	\begin{field}  % Answer
+		Eine L"osung $y$ des AWP 
+		\begin{equation*}
+		\dot{x}=f(t,x(t)), D(f) \subseteq \R{} \times \R, x(t_0)=X_0
+		\end{equation*}
+		auf einem Intervall $(a',b')$ hei"st \textit{Fortsetzung von x} (x eine lokale L"osung des AWP auf $(a,b)$), wenn:
+		\begin{itemize}
+			\item $(a,b) \subset (a',b')$,
+			\item $y(t) \equiv x(t) \forall_{t\in (a,b)}$
+		\end{itemize}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{UUID}
+	\tags{satz, fortsetzung, 3.5.2}
+	
+	\begin{field}  % Question
+		Wie lautet der Satz "uber die Eindeutigkeit der Fortsetzung?
+	\end{field}
+		
+	\begin{field}  % Answer
+		Sei ein  
+		\begin{empheq}[left= \text{AWP:~} \empheqlbrace]{align*}
+		&\dot{x}=f(t,x(t)), D(f) \subseteq \R{} \times \R{} \\ 
+		 &x(t_0)=x_0
+		\end{empheq}
+		gegeben.
+		
+		 Sei $Q=[t_1,t_2] \times [x_1,x_2]$ eine Menge auf der das AWP mit $(t_0, x_0) \in Q$
+		lokal l"osbar ist. Sei $x$ auf $(a,b) \in [t_1,t_2]$ eine L"osung des AWPs. Seien $y_1$, $y_2$
+		zwei Fortsetzungen von x auf $(a',b')\in [t_1,t_2]$. Dann gilt: 
+		\begin{equation*}
+		y_1(t) = y_2(t) \qquad \forall_{t\in (a',b')}
+		\end{equation*}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{UUID}
+	\tags{definition, fortsetzung,, 3.5.3, 3.5.4}
+	
+	\begin{field}  % Question
+		Eine L"osung, die nicht mehr fortsetzbar ist, hei"st...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... \textit{maximal}.
+	\end{field}
+		
+	\begin{field}  % Question
+		Eine L"osung hei"st \textit{maximal}, wenn...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... sie nicht mehr fortsetzbar ist.
+	\end{field}
+		
+	\begin{field}  % Question
+		Wie lautet der Satz "uber die maximale L"osung?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $G \subset \R{2}$ ein beschr"anktes Gebiet. $f: G \rightarrow \R{}$ gen"uge den Bedingungen vom Satz von Picard/Lindel"of. Dann gilt:
+		\begin{enumerate}
+			\item $\exists!$ eine maximal L"osung $x_{\text{max}}$ des AWP (auf $(a,b)$).
+			\item F"ur $u \coloneqq \lim\limits_{t\rightarrow a^+}x_{\text{max}}(t)$,
+			$v\coloneqq \lim\limits_{t\rightarrow b^-}x_{\text{max}}(t)$ \\
+			gilt $(a,u), (b,v) \in \partial G$.
+		\end{enumerate}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{UUID}
+	\tags{satz, 3.6}
+	
+	\begin{field}  % Question
+		Wie lautet der Satz "uber die Absch"atzung der Differenz von L"osungen (stetige Abhängigkeit)?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $\dot{x}=f(t,x)$, $f$ stetig auf einem Streifen $(a,b)\times \R{}$. F"ur jedes abgeschlossene Intervall $[a',b'] \subset (a,b)$ existieren eine Lippschitzkonstante $L'$ mit:
+		\begin{equation*}
+			\forall_{t \in [a', b']} \forall_{x_1, x_2 \in \R{}}: \quad
+			\abs{f(t,x_1) - f(t,x_2)} \leq L'\norm{x_1 - x_2}
+		\end{equation*}
+		
+		Seien nun $x(t), \hat{x}(t)$ L"osungen eines AWP mit $x(t_0)=x_0, \\  \hat{x}(t_0) = \hat{x}_0$
+		auf $[a',b']$ MIT $t_o \in (a',b')$. Dann gilt:
+		\begin{equation*}
+			\forall_{t \in [a', b']}: \ \abs{x(t) - \hat{x}(t)} \leq e^{L'\abs{t-t_0}} \cdot \norm{x_0-\hat{x}_0}
+		\end{equation*}
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{UUID}
+	\tags{}
+	
+	\begin{field}  % Question
+		
+	\end{field}
+	
+	\begin{field}  % Answer
+		
+	\end{field}
+\end{note}
 \end{document}
