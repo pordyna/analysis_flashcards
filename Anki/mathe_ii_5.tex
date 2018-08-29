@@ -1,0 +1,399 @@
+% !TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The first part of the header needs to be copied
+%       into the note options in Anki.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% layout in Anki:
+\documentclass[9pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{paperwidth=.5\paperwidth,paperheight=100in,left=2em,right=2em,bottom=1em,top=2em}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+ 
+% hyphenation:
+\usepackage[ngerman]{babel}
+
+% encoding:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% packages:
+\usepackage{parskip}
+\usepackage[free-standing-units=true]{siunitx}
+% Writng si units, numbers, list of numbers etc.
+\usepackage{gensymb}
+% Unified typseting of units outside of siuitx
+\usepackage{amsmath}
+\usepackage{amsfonts}  
+% Math features
+\usepackage{esdiff}
+% Typeseting of (partial)derivatives 
+\usepackage{commath}
+% More  derivatives. Not so nice like esdiif but adds
+% \dif comand for upright d in math mode.
+\usepackage{bm}
+% Bold font in math mode
+\usepackage{esint}
+% Some fancy integrals signs. Mutilpe integrals
+\usepackage{enumerate}
+% Different styles for enumerate lists
+\usepackage{multirow}
+% More advanced tabular
+\usepackage{physics}
+% Lots of usefull comannds for physicists. Vektors, nablas etc.
+\usepackage{amssymb, xfrac}
+% extra fonts and symbols 
+\usepackage{mathtools}
+% extension to amsmath, fixes, meany new tool
+\usepackage{isotope}
+\usepackage{empheq}
+%commands:
+\usepackage{ifthen}
+
+\newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Rk}{\mathbb{R}^k}
+\newcommand{\R}[1]{%
+	\ifthenelse{\equal{#1}{}}
+		{\mathbb{R}}
+		{\mathbb{R}^#1}}%
+\newcommand{\C}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{C}}
+	{\mathbb{C}^#1}}%	
+\renewcommand{\vec}[1]{\underline{#1}}
+\newcommand{\Hi}{\mathcal{H}}
+
+\DeclarePairedDelimiter{\innerprod}\langle\rangle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following part of header NOT to be copied into
+%            the note options in Anki.
+%          ! Anki will throw an errow !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  pdf layout:
+%
+\geometry{paperheight=74.25mm}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper,border shrink=0cm]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+% 
+%  notes, fields, tags:
+%
+\newcommand{\xfield}[1]{
+        #1\par
+        \vfill
+        {\tiny\texttt{\parbox[t]{\textwidth}{\localtag\\\globaltag\hfill\uuid}}}
+        \newpage}
+\newenvironment{field}{}{\newpage}
+\newif\ifnote
+\newenvironment{note}{\notetrue}{\notefalse}
+\newcommand{\localtag}{}
+\newcommand{\globaltag}{}
+\newcommand{\uuid}{}
+\newcommand{\tags}[1]{
+    \ifnote 
+        \renewcommand{\localtag}{#1}
+    \else
+        \renewcommand{\globaltag}{#1}
+    \fi 
+    }
+\newcommand{\xplain}[1]{\renewcommand{\uuid}{#1}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following line again needs to be copied 
+% into Anki:
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tags{mathe2::2sem::hilbertraum}
+
+\begin{note}
+	\xplain{UUID}
+	\tags{satzt, metrischer-raum}
+	
+	\begin{field}  % Question
+		Definiere ein metrischer Raum (und Metrik).
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sien $M \neq \emptyset$ eine Menge und $d: M: M \times M \rightarrow \R{}$ eine Abbildung,
+		$d$ hei"st \textit{Metrik} in $M$, wenn $\forall x,y,z \in M$ gilt:
+		\begin{enumerate}
+			\item (\textbf{Definitheit}) $d(x,y) \geq 0$ und $d(x,y) = 0 \Leftrightarrow x=y $,
+			\item (\textbf{Symmetrie}) $d(x,y) = d(y,x)$,
+			\item (\textbf{Dreiecksungleichung}) $d(x,y) \leq d(x,z) + d(z,y)$.
+		\end{enumerate}
+	$(M,d)$ hei"st dann \textit{metrischer Raum}.
+	\end{field}
+		
+	\begin{field}  % Question
+		Definiere einen normieren Raum.
+	\end{field}
+	
+	\begin{field}  % Answer
+		Seien $V$ Vektorraum ("uber $\R{}$ oder $\C{}$) und $\norm{\cdot} : V \rightarrow \R{}/\C{}$ eine Abbildung. Die Abb. hei"st \textit{Norm} auf $V$, wenn $\forall x,y \in V, \lambda \in \R{} $(bzw. $\in \C{}$) gilt:
+		\begin{enumerate}
+			\item (\textbf{Definitheit}) $\norm{x} \geq 0$ und $\norm{x} = \Leftrightarrow x =0$,
+			\item (\textbf{Homogenit"at}) $\norm{\lambda x} = \abs{\lambda} \norm{x}$,
+			\item (\textbf{Dreiecksungleichung}) $\norm{x+y} \leq \norm{x} + \norm{y}$.
+		\end{enumerate}
+	$(V,\norm{\cdot})$ hei"st \textit{Normierter Raum}.
+	\end{field}
+		
+	\begin{field}  % Question
+		Ein \underline{vollst"andiger} normierter Raum hei"st...
+	\end{field}
+	
+	\begin{field}  % Answer
+	... \textit{Banach-Raum}.	
+	\end{field}
+		
+	\begin{field}  % Question
+		Ein Banach-Raum ist...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... ein vollst"andiger normierter Raum.
+	\end{field}
+	
+		
+	\begin{field}  % Question
+		Wie lautet die Minkowski-Ungleichung?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $1\leq p \leq \infty$, $x,y \in l^p$, dann
+		\begin{equation*}
+			\norm{x + y}_p \leq \norm{x}_p + \norm{y}_p
+		\end{equation*}
+	
+	Also Dreiecksungleichung f"ur die $p$-Norm.
+	Analoge Aussage gilt f"ur $L^p$.
+	\end{field}
+		
+	\begin{field}  % Question
+		Wie lautets die H"older-Ungleichung?
+	\end{field}
+	
+	\begin{field}  % Answer
+		F"ur $x\in l^1, y \in l^\infty$ gilt:
+		\begin{equation*}
+			xy \coloneqq \qty(x_n y_n)_{n\in \mathbb{N}} \in l^1. \qq{und} \norm{xy}_1 \leq \norm{x}_1 \cdot\norm{y}_\infty
+		\end{equation*}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{UUID}
+	\tags{definition, skalarprodukt, hilbertraum, 5.2}
+	
+	\begin{field}  % Question
+		Definiere einen unit"aren Raum.
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $V$ ein Vektorraum "uber $\C{}$. Ein Skalarprodukt auf $V$ ist eine Abbildung $\innerprod{\cdot, \cdot}: V \times V \rightarrow \C{}$ mit den Eigenschaften 
+		$\forall \varphi, \psi, \chi \in V, c \in \C{}$ gilt:
+		\begin{enumerate}[i)]
+			\item $\innerprod{\varphi,\varphi} \geq 0$ und $\innerprod{\varphi,\varphi} = 0 \Leftrightarrow \varphi = 0$,
+			\item $\innerprod{\varphi, \psi + \chi} = \innerprod{\varphi,\psi} + \innerprod{\varphi,\chi}$,
+			\item $\innerprod{\varphi, c \cdot \psi}= \cdot \innerprod{\varphi, \psi}$,
+			\item $\innerprod{\varphi, \psi} = \overline{\innerprod{\varphi,\psi}}$.
+		\end{enumerate}
+	
+	$(V, \innerprod{\cdot, \cdot})$ hei"st \textit{unit"arer Raum}.
+	\end{field}
+
+	\begin{field}  % Question
+		Ein \textit{Hilbertraum} ist ein...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... vollst"andiger unit"arer Raum.
+	\end{field}
+	
+	\begin{field}  % Question
+		Ein vollst"andiger unit"arer Raum hei"st...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... Hilbertraum. 
+	\end{field}
+		
+	\begin{field}  % Question
+		Ein Hilbertraum $\Hi$ hei"st \textit{seperabel}, wenn...
+	\end{field}
+	\begin{field}  % Answer
+		... es eine abz"ahlbare Menge
+		$\qty{\varphi_n, n\in \mathbb{N}} \subseteq \Hi$ gibt, die dicht in $\Hi$ liegt.
+
+	\end{field}
+\end{note}
+	\begin{note}
+		\xplain{UUID}
+		\tags{definition, satz, 5.2.9, 5.2.10}
+		
+		\begin{field}  % Question
+			Wie ist ein Abstand von einer Teilmenge in einem Hilbertraum definiert?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Seien $\Hi$ ein Hilbertraum, $\phi \in \Hi, K \neq \emptyset, K \subseteq \Hi$ abgeschlossen und konvex. Dann ist:
+			\begin{equation*}
+				\text{dist}(\phi, K) \coloneqq \inf\qty{\norm{\phi - \psi} | \psi \in K}
+			\end{equation*}
+		\end{field}
+	
+		\begin{field}  % Question
+			Wie lautet der Satz "uber die Existenz des Abstands?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Seine $\Hi$ ein Hilbertraum, $K\subseteq \Hi$ eine abgeschlossene, konvexe Menge und $\varphi_0 \in \Hi$. Dann $\exists! \ \psi_0 \in \Hi$ mit $\norm{\varphi_0 - \psi_0} = \text{dist}(\varphi_0, K)$. Au"serdem gilt:
+			\begin{equation*}
+				\forall \psi \in K: \real\innerprod{\psi, \varphi_0 - \psi_0} \leq \real\innerprod{\psi_0, \varphi_0 - \psi_0}
+			\end{equation*} 
+		\end{field}
+	\end{note}	
+	\begin{note}
+		\xplain{UUID}
+		\tags{definition, satz, 5.2.11, 5.2.12}
+			
+		\begin{field}  % Question
+			Wie ist das orthogonale Komplement definiert?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Seien $\Hi$ ein Hilbertraum und $M \subseteq \Hi$. Die Menge 
+			\begin{equation*}
+				M^\perp \coloneqq \qty{\varphi \in \Hi| \forall \psi \in M: \varphi \perp \psi}
+			\end{equation*} 
+			hei"st \textit{orthogonales Komplement} von $M$.
+		\end{field}
+			
+		\begin{field}  % Question
+			Wie lautet der Projektionssatz?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Seien $\Hi$ ein Hilbertraum, $\L\subset \Hi$ ein abgeschlossener Untervektorraum. Dann hat jedes $\varphi \in \Hi$ eine eindeutige Darstellung:
+			\begin{equation*}
+				\varphi = \psi + \psi^\perp \qq{mit} \psi \in L \text{ und } \psi^\perp \in L^\perp
+			\end{equation*}
+			
+			$\psi$ hei"st \textit{orthogonale Projektion} von $\varphi$ auf $L$. 
+			
+			Durch $\varphi \mapsto P_\varphi \coloneqq \psi$ wird ein linearer Operator definiert. Es gilt $P^2=P$ und $\forall \varphi \in \Hi: \norm{P_\varphi} \leq \norm{\varphi}$.
+		\end{field}
+	%noch direkte Summe.
+	\end{note}
+	\begin{note}
+		\xplain{UUID}
+		\tags{satz, ONS, 5.2.13}
+		
+		\begin{field}  % Question
+			Was sind die Aussagen des Satzes "uber die Orthonormalsysteme in Hilbertr"aumen?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Seien $\Hi$ ein Hilbertraum und $(\phi_n)$ ein Orthonormalsystem in $\Hi$. Die folgende Aussagen sind "aquivalent:
+			\begin{enumerate}[i)]
+				\item $\text{span}\qty{\varphi_n | n\in \mathbb{N}}$ ist dicht in $\Hi$.
+				\item $\forall \varphi \in \Hi: \ \phi = \sum_{n=1}^\infty \innerprod{\varphi_n, \varphi}\varphi_n \coloneqq \lim\limits_{N\rightarrow \infty}\sum_{n=1}^N \innerprod{\varphi_n, \varphi}\varphi_n$
+				\item $\forall \varphi \in \ Hi$ gilt die Parservalsche Gleichung:
+					\begin{equation*}
+						\norm{\varphi}^2 = \sum_{n=1}^\infty\abs{\innerprod{\varphi_n, \varphi}}^2
+					\end{equation*}
+			\end{enumerate} 
+		\end{field}
+		
+		\begin{field}  % Question
+			Sei $\Hi$ ein Hilbertraum. Wie ist eine \textit{Orthonormalbasis} von $\Hi$ definiert? 
+		\end{field}
+			
+		\begin{field}  % Answer
+			Ein Orthonormalsystem $(\phi_n)$ in $\Hi$, f"ur das $\text{span}\qty{\varphi_n \ | \ n\in \mathbb{n}}$ dicht in $\Hi$ ist, hei"st \textit{Orthonormalbasis}. 
+		\end{field}
+			
+		\begin{field}  % Question
+			Der Satz "uber die Orthonormalbasis eines Hilbertraumes besagt, dass...
+		\end{field}
+		
+		\begin{field}  % Answer
+			jeder Hilbertraum eine Orthonormalbasis hat. 
+		\end{field}
+			
+		\begin{field}  % Question
+			Was sind die wichtigen Bemerkungen zum Thema Orthogonalbasen nov Hilbertr"aumen?
+		\end{field}
+		
+		\begin{field}  % Answer
+			\begin{itemize}
+				\item Reihenfolge von $(\varphi_n)$ ist eigentlich nicht relevant.
+				\item $\Hi$ seperabel $\Leftrightarrow$ $\Hi$hat eine anz"ahlbare ONB.
+				\item M"achtigkeit allen ONBen zu einem Hilbertraum ist gleich und wird Hilbertraum Dimension von $\Hi$ genannt. 
+				\item jeder seperable Hilbertraum ist isomorph zu $l^2$.
+			\end{itemize}
+		\end{field}
+			
+		\begin{field}  % Question
+			Erkl"are die Isomorphie eines separablen $\Hi$ zu $l^2$.  
+		\end{field}
+		
+		\begin{field}  % Answer
+			$(\varphi_n)$ ONB von $\Hi$. Die Abbildung 
+			\begin{equation*}
+				J: \Hi \rightarrow l^2,\quad \varphi \mapsto \qty(\innerprod{\varphi_n, \varphi})_{n\in \mathbb{N}}
+			\end{equation*}
+			ist: 
+			\begin{itemize}
+				\item \textbf{linear} (da das Skalarprodukt im 2. Eintrag es ist. ) ,
+				\item \textbf{bijektiv} (da Darstellung bzgl. einer ONB eindeutig ist),
+				\item \textbf{isometrisch}.
+			\end{itemize}
+		Mit \textbf{linear} folgt J \textit{Vektorraumhomomorphismus} weiter mit \textbf{bijektiv} J \textit{Vektorraumisomorphismus}. 
+		 mit \textbf{Isometrie} $\Rightarrow$ \textit{isometrische Isomorphie}. 
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{UUID}
+		\tags{definition, satz, dualraum, 5.2.17, 5.2.18}
+		
+		\begin{field}  % Question
+			Definiere den \textit{Dualraum} zu $\Hi$.
+		\end{field}
+		
+		\begin{field}  % Answer
+			Der Dualraum zu $\Hi$ ist der Vektorraum aller linearen stetigen Funktionale auf $\Hi$
+			mit der Norm:
+			\begin{equation*}
+				\norm{f}_{\Hi'} \coloneqq \sup\qty{\abs{f(\varphi)} \ | \ \varphi \in \Hi, \norm{\varphi}\leq 1}
+			\end{equation*}
+			Er wird mit $\Hi'$ bezeichnet. 
+		\end{field}
+		
+	\begin{field}  % Question
+		Wie lautet der Satz von Riesz?
+	\end{field}
+	
+	\begin{field}  % Answer
+		\begin{itemize}
+			\item $\forall f \in \Hi'$ gibt es ein \textbf{eindeutiges} $\psi \in \Hi$ so, dass
+			$f \coloneqq f_\psi$, wobei $f_\psi :\Hi \rightarrow \C{}, \ \ \varphi \mapsto \innerprod{\psi,\varphi}$.
+			\item Die Abbildung $J : \Hi \rightarrow \Hi', \ \ \psi \mapsto f_\psi$ ist \textbf{bijektiv} und \textbf{konjugiert linear}.
+			\item Es gilt $\forall \psi \in \Hi: \quad \norm{\Psi} = \norm{f_\Psi}_{\Hi'}$.
+		\end{itemize}
+	\end{field}
+	\end{note}
+
+\end{document}
