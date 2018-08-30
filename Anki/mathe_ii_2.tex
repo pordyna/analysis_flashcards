@@ -238,7 +238,7 @@
 	\begin{field}  % Answer
 		$\vec{f}: \R{n+1} \supseteq D(\vec{f} \rightarrow \R{n} :\  (t,\vec{x}) \mapsto f(t, vec{x})$
 		gen"ugt einer \textit{Lippschitzbedingung} bzgl. $\vec{x}$ in $D(\vec{f})$, wenn
-		$\forall \vec{x}, \vec{y}$ mit $(t,\vec{x}), (t,\vec{y}) \in D(\vec{f}) \qq \exists L >0$:
+		$\forall \vec{x}, \vec{y}$ mit $(t,\vec{x}), (t,\vec{y}) \in D(\vec{f})  \ \ \exists L >0$:
 		\begin{equation*}
 			\norm{\vec{f}(t,\vec{x}) - \vec{f}(t, \vec{y})}_n \leq L \norm{\vec{x} - \vec{y}}_n
 		\end{equation*}
@@ -657,6 +657,62 @@
 					x(t) = e^{(t-t_0)A} x_0 + \int_{t_0}^{t}
 					e^{(t-t')A}f(t')\dif t'
 				\end{equation}
+			\end{field}
+		\end{note}
+		\begin{note}
+			\xplain{UUID}
+			\tags{LDGLS, konstante-koeffizienten, 3.9.4}
+			
+			\begin{field}  % Question
+				Wie berechnet man $e^At$ wenn $A$ diagonal?
+			\end{field}
+			
+			\begin{field}  % Answer
+				\begin{equation*}
+					e^{At} = 
+						\begin{pmatrix}
+					     e^{a_{11}t} & 		&			\\
+					     			&\ddots &			 \\
+					     			&		&e^{a_{nn}t}
+						\end{pmatrix}
+				\end{equation*}
+			\end{field}
+				
+			\begin{field}  % Question
+				Wie berechnet man $e^At$ wenn $A$ diagonalisierbar?
+			\end{field}
+			
+			\begin{field}  % Answer
+
+				$A=SDS^{-1}$ $S$ eine regul"are Matrix, D ist diagonal. 
+				\begin{equation*}
+				e^{At} = Se^{Dt}S^{-1}
+				\end{equation*}
+				\textbf{Diagonalisieren:}\\
+		
+				Man findet $D$ mit dem Charakteristischen Polynom  $ \chi_A=0$. Als spalten von $S$ nimmt man die zu den Eigenwerten zugeh"orige Eigenvektoren.  	 
+			\end{field}
+				
+			\begin{field}  % Question
+					Wie berechnet man $e^At$ wenn $A$ nicht diagonalisierbar?
+			\end{field}
+			
+			\begin{field}  % Answer
+				Man bringt es auf die Jordansche Normalform mit $r$ Jordan-Bl"ocken.
+				\begin{align*}
+					e^{At} =& Se^{Jt}S^{-1}\\
+						   =& S \ \text{diag}\qty(e^{J_1(\lambda(1))t}, \dots, e^{J_r(\lambda_r)t}) S^{-1} \\
+						   =&S \ \text{diag}\qty(e^{\lambda_1 t}H_1(t), \dots, e^{\lambda_r t}H_r(t)) S^{-1}
+				\end{align*}
+				\begin{equation*}
+				H_i = 
+					\begin{pmatrix}
+						1 & \frac{t}{1!} & \dots  & \frac{t^{n-1}}{(n-1)!} \\
+						  & \ddots       & \ddots & \vdots                 \\
+						  &              & \ddots & \frac{t}{1!}           \\
+						  &              &        & 1
+					\end{pmatrix}	
+				\end{equation*}
 			\end{field}
 		\end{note}
 \end{document}
