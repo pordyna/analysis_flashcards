@@ -1,4 +1,5 @@
-r% !TEX encoding = UTF-8 Unicode
+% !TeX spellcheck = de_DE
+% !TEX encoding = UTF-8 Unicode
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The first part of the header needs to be copied
 %       into the note options in Anki.
@@ -43,7 +44,7 @@ r% !TEX encoding = UTF-8 Unicode
 % More advanced tabular
 \usepackage{physics}
 % Lots of usefull comannds for physicists. Vektors, nablas etc.
-\usepackage{amssymb, xfrac}
+\usepackage{amssymb, xfrac, bbold}
 % extra fonts and symbols 
 \usepackage{mathtools}
 % extension to amsmath, fixes, meany new tool
@@ -58,11 +59,11 @@ r% !TEX encoding = UTF-8 Unicode
 \newcommand{\R}[1]{%
 	\ifthenelse{\equal{#1}{}}
 		{\mathbb{R}}
-		{\mathbb{R}^#1}}%
+		{\mathbb{R}^{#1}}}%
 \newcommand{\C}[1]{%
 	\ifthenelse{\equal{#1}{}}
 	{\mathbb{C}}
-	{\mathbb{C}^#1}}%	
+	{\mathbb{C}^{#1}}}%	
 \renewcommand{\vec}[1]{\underline{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -449,4 +450,213 @@ r% !TEX encoding = UTF-8 Unicode
 		 Diese existiert auf dem ganzen Intervall $I$ und h"angt auf jedem kompakten Teilintervall von $I$ von den ABen $a_i(t),f(t)$ stetig ab.
 	\end{field}
 \end{note}
+\begin{note}
+	\xplain{UUID}
+	\tags{LDGLS}
+	
+	\begin{field}  % Question
+		Sei ein linearer homogener DGL-System 1. Ordnung und $n$-ten Dimension gegeben. Dann hei"st ein System von 
+		$n$ lin. unabh"angigen L"osungen...
+	\end{field}
+	
+	\begin{field}  % Answer
+		\textit{Fundamentalsystem.}
+	\end{field}
+		
+	\begin{field}  % Question
+		Die Fundametalmatrix ist...
+	\end{field}
+	
+	\begin{field}  % Answer
+		die L"osungsmatrix $\Phi(t)$ ($(x_1|x_2|...)$ L"osungen als Spalten.) aus $n$ lin. unabh"angigen L"osungen. (Das zugeh"orige homogene LDGLS ist $n$-ter Ordnung).
+	\end{field}
+		
+	\begin{field}  % Question
+		Gib drei äquivalente Aussage zu: Eine quadratische L"osungsmatrix $\Phi(t)$ ist die Fundamentalmatrix.
+	\end{field}
+	
+	\begin{field}  % Answer
+		\begin{itemize}
+			\item Die Spalten von $\Phi(t)$ bzw. die einzelne L"osungen sind linear unabh"angig ,
+			\item $\forall_{t\in I}: \quad \text{rang}\Phi(t)$ ist maximal,
+			\item $\exists_{t\in I}: \quad \text{rang}\Phi(t)$ ist maximal.
+		\end{itemize}
+	$I$ Stetigkeitsintervall auf dem das LDGLS gegeben ist.  
+	\end{field}
+		
+	\begin{field}  % Question
+		Wronskideterminante ist definiert als...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... die Determinante der Fundamentalmatrix.
+	\end{field}
+		
+	\begin{field}  % Question
+		Die Determinante der Fundamentalmatrix hei"st...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... Wronskideterminante.
+	\end{field}
+		
+	\begin{field}  % Question
+		Satz "uber die Wronski-Determinante.
+		F"ur $n$ L"osungen eines homogenen LDGLS 1.Ordnung und $n$-ter Dimension sind äquivalent: 
+		\begin{itemize}
+			\item Die L"osungen bilden ein Fundamentalsystem.
+			\item ...
+		\end{itemize}  
+	\end{field}
+	
+	\begin{field}  % Answer
+		...
+		\begin{itemize}
+			\item $\forall t \in I$ $W(t)\neq0$,
+			\item $\exists t \in I$ $W(t)\neq0$,
+		\end{itemize}
+	$I$ Stetigkeitsintervall auf dem das LDGLS gegeben ist.
+	$W(t)$ Wronski-Determinante.
+	\end{field}
+		
+	\begin{field}  % Question
+		Satz "uber die Existenz und Eindeutigkeit der Fundamentalmatrix lautet:
+		
+		(+Beweisidee)
+	\end{field}
+
+	\begin{field}  % Answer
+		Es g"abe ein homogenes lineares DGL-System mit der Ordnung 1 und Dimension $n$.
+		\begin{equation*}
+			\dot{\vec{x}} = A(t)\vec{x} 
+		\end{equation*}
+		Die Koeffizientenmatrix  $A(t)$ sei stetig auf $I=(a,b)$. Dann existiert,f"ur die obige Gleichung, auf $I$ eine Fundamentalmatrix von $n$ L"osungen.
+		
+		\textbf{Beweisidee}: \\
+		W"ahle $n$ beliebige, voneinander linear unabh"angige Anfangswerte, f"ur ein festes $t_0 \in I$. Dann gibt es
+		eine eindeutige L"osung zu jedem der AWP auf ganz $I$. 
+		Es gen"ugt zu zeigen, dass die L"osungen f"ur ein $t$ 
+		linear unabh"angig sind. Das gilt aber f"ur $t_0$.
+	\end{field}
+		
+	\begin{field}  % Question
+		Wie lautet der Satz "uber die Bedeutung der Fundamentalmatrix?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Es g"abe ein homogenes lineares DGL-System  ersten Ordnung:
+		\begin{equation*}
+		\dot{\vec{x}} = A(t)\vec{x} 
+		\end{equation*}
+		Ist $\Phi(t)$ eine Fundamentalmatrix von dem DGL-System auf $(a,b)$, dann ist die Allgemeine L"osung der Gleichung auf dem Gebiet $G=\qty{(t,x) \ | \ t\in(a,b), \norm{x} < \infty}$:
+		\begin{equation*}
+			x(t)= \Phi(t) \cdot c
+		\end{equation*}
+		wobei $c$ ein beliebiger Vektor ist. 
+	\end{field}
+\end{note}
+	\begin{note}
+		\xplain{UUID}
+		\tags{LDGL, inhomogen,3.8.7}
+		
+		\begin{field}  % Question
+			Wie findet man die L"osung eines inhomogenen linearen  DGL-System, falls die Fundamentalmatrix $\Phi$ des zugeh"origen homogenen DGL-System schon bekannt ist?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Die L"osung hat die Form:
+			\begin{equation*}
+				x(t) = \underbrace{\Phi\cdot c}_{\text{allg. Lsg.  der hom. Glg.}} + \underbrace{\Psi}_{\text{eine spezielle Lsg. der inhom. Glg.}}
+			\end{equation*}
+			Sie kann mittels Variation der Konstanten bestimmt werden. Es gilt die folgende L"osungsformel:
+			\begin{equation*}
+				x(t) = \Phi(t)\qty[c + \int_{t_0}^{t}\Phi^{-1}(t')f(t')\dif t']
+			\end{equation*}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{UUID}
+		\tags{LDGLS, konstante-koeffizienten, 3.9}
+		
+		\begin{field}  % Question
+			Es g"abe einen linearen DGL-System der Dimension $n$
+			\textbf{mit konstanten Koeffizienten}.
+			\begin{equation*}
+				\dot{x} = Ax
+			\end{equation*}
+			Wie l"ost man  das System mit der Ansatzmethode? 
+		\end{field}
+		
+		\begin{field}  % Answer
+	
+			\textbf{Ansatz:} $x(t)= c \cdot e^{\lambda t}$,
+				$\quad \lambda\in \C{}, c\in \C{n}$.
+			
+			
+			$\Rightarrow$ Eigenwertgleichung:
+			\begin{equation*}
+				Ac = \lambda c \Rightarrow \text{det}(A - \lambda \mathbb{1}) \overset{!}{=} 0
+			\end{equation*}
+			Bestimme die Eigenwerte und Eigenvektoren.
+			
+			Dann sind $x_i = c_ie^{\lambda_i t}$ L"osungen.
+		\end{field}
+		\end{note}
+		\begin{note}
+			\xplain{UUID}
+			\tags{LDGLS, konstante-koeffizienten, 3.9}
+			
+			\begin{field}  % Question
+				Es g"abe einen linearen homogenen  DGL-System der Dimension $n$
+				\textbf{mit konstanten Koeffizienten}
+				$\dot{x} = Ax$.
+
+				 Was gilt f"ur L"osungen, die mit der Ansatzmethode bestimmt wurden, falls $\A \in \C{n\times n}$ und was gilt f"ur  $\A \in \R{n\times n}$?
+			\end{field}
+			
+			\begin{field}  % Answer
+				$A,c_i, \lambda_i$,komplex: Man bekommt ein Fundamentalsystem falls $A$ $n$ verschiedene Eigenwerte hat.
+				$A$ reellwertig:
+				\begin{itemize}
+					\item Fundamentalsystem wenn $A$ $n$ lin. unab. Eigenvektoren besitzt. 
+					\item Ein komplexer Eigenwert tritt immer gemeinsam mit einem dazu c.c. auf.
+					\item Aus einer komplexen L"osung $x(t)$ bekommt man zwei reelle L"osungen $u(t)= \real (x(t))$ und $v(t)=\imaginary (x(t))$.
+				\end{itemize} 
+			\end{field}
+		\end{note}
+		\begin{note}
+			\xplain{UUID}
+			\tags{LDGLS, konstante-koeffizienten, 3.9}
+			
+			\begin{field}  % Question
+				Es g"abe einen homogenen linearen DGL-System der Dimension $n$
+				\textbf{mit konstanten Koeffizienten}
+				$\dot{x} = Ax$. Au"serdem g"abe es zu dem System ein AWP mit $x(t_0)=x_0$.
+				Dann ist $e^At$...
+			\end{field}
+			
+			\begin{field}  % Answer
+				... Fundamentalmatrix von dem DGL-System auf \\ ${I=(-\infty, \infty)}$.
+				
+				Das Anfangswertproblem hat die L"osung:
+				\begin{equation*}
+					x(t) = e^{(t-t_0) A} \cdot x_0
+				\end{equation*}  
+			\end{field}
+				
+			\begin{field}  % Question
+				Es g"abe ein AWP zu einem inhomogenen linearen DGL-System der Dimension $n$
+				\textbf{mit konstanten Koeffizienten}
+				$\dot{x} = Ax+ f(t), x(t_0)=x_0$.
+				Wie berechnet man die L"osung?
+			\end{field}
+			
+			\begin{field}  % Answer
+				Es gilt die folgende L"osungsformel:
+				\begin{equation}
+					x(t) = e^{(t-t_0)A} x_0 + \int_{t_0}^{t}
+					e^{(t-t')A}f(t')\dif t'
+				\end{equation}
+			\end{field}
+		\end{note}
 \end{document}
