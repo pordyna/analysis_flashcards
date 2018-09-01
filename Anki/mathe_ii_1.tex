@@ -49,13 +49,25 @@
 \usepackage{mathtools}
 % extension to amsmath, fixes, meany new tool
 \usepackage{isotope}
-
+\usepackage{empheq}
 %commands:
+\usepackage{ifthen}
+
 \newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
 \newcommand{\Rn}{\mathbb{R}^n}
 \newcommand{\Rk}{\mathbb{R}^k}
-\newcommand{\R}[1]{\mathbb{R}^#1}
-\newcommand{\C}[1]{\mathbb{Cs}^#1} 
+\newcommand{\R}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{R}}
+	{\mathbb{R}^{#1}}}%
+\newcommand{\C}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{C}}
+	{\mathbb{C}^{#1}}}%	
+\renewcommand{\vec}[1]{\underline{#1}}
+\DeclarePairedDelimiter{\innerprod}\langle\rangle
+\newcommand{\Fr}{\mathcal{F}}
+\newcommand{\Hi}{\mathcal{H}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Following part of header NOT to be copied into
 %            the note options in Anki.
@@ -491,7 +503,7 @@
 \begin{note}
 	\xplain{de2f80aa-14cf-4e46-9bc7-f98c32a2416c}
 	\tags{lemma, orientierung, 1.4.3}
-		\xfield{Eine $k$-dim. UM $M$ des $\mathbb{R}^n$} ist genau dann orientierbar, wenn...
+		\xfield{Eine $k$-dim. UM $M$ des $\mathbb{R}^n$ ist genau dann orientierbar, wenn...}
 		\xfield{es einen Atlas aus gleichorientierten Karten gibt.}
 \end{note}
 

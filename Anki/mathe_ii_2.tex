@@ -58,14 +58,16 @@
 \newcommand{\Rk}{\mathbb{R}^k}
 \newcommand{\R}[1]{%
 	\ifthenelse{\equal{#1}{}}
-		{\mathbb{R}}
-		{\mathbb{R}^{#1}}}%
+	{\mathbb{R}}
+	{\mathbb{R}^{#1}}}%
 \newcommand{\C}[1]{%
 	\ifthenelse{\equal{#1}{}}
 	{\mathbb{C}}
 	{\mathbb{C}^{#1}}}%	
 \renewcommand{\vec}[1]{\underline{#1}}
-
+\DeclarePairedDelimiter{\innerprod}\langle\rangle
+\newcommand{\Fr}{\mathcal{F}}
+\newcommand{\Hi}{\mathcal{H}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Following part of header NOT to be copied into
 %            the note options in Anki.
@@ -117,7 +119,7 @@
 \tags{mathe2::1sem::GDGL}
 
 \begin{note}
-	\xplain{UUID}  %UUID
+	\xplain{f3af8756-23b0-4472-bdcd-0d3c40010b44}  %UUID
 	\tags{definition, 3.1.1, 3.1.2}
 	
 	\begin{field}  % Question
@@ -164,7 +166,7 @@
 \end{note}
 
 \begin{note}
-	\xplain{UUID}  %UUID
+	\xplain{caa48b6b-bfe0-4009-8d36-da9a13f48910}  %UUID
 	\tags{definition, 3.1.3}
 	
 	\begin{field}  % Question
@@ -177,7 +179,7 @@
 \end{note}
 
 \begin{note}
-	\xplain{UUID}  %UUID
+	\xplain{e7470fcc-afc7-4b91-a141-8e0d5c7677f8}  %UUID
 	\tags{GDGL, methode, 3.2.7.1}
 	
 	\begin{field}  % Question
@@ -194,7 +196,7 @@
 \end{note}
 
 \begin{note}
-	\xplain{UUID}  %UUID
+	\xplain{512aa0ca-bf37-44a1-a507-4a2c51a90f65}  %UUID
 	\tags{satz, 3.3 , fixpunkt}
 	
 	\begin{field}  % Question
@@ -216,7 +218,7 @@
 \end{note}
 
 \begin{note}
-	\xplain{UUID}  %UUID
+	\xplain{97b4ffa4-d268-42a5-a0ca-51c3c4846cc8}  %UUID
 	\tags{definition, Lippschitz, 3.4.1, 3.4.8}
 	
 	\begin{field}  % Question
@@ -247,7 +249,7 @@
 	\end{field}
 \end{note}
 \begin{note}
-	\xplain{UUID}
+	\xplain{3cee940e-fb01-403a-a7b9-f98f1aac3aa7}
 	\tags{satz, picard-lindeloef, 3.4.2}
 	
 	\begin{field}  % Question
@@ -270,7 +272,7 @@
 \end{note}
 
 \begin{note}
-	\xplain{UUID}
+	\xplain{6bb4d661-91ce-4ef5-9bfd-e5a68ffcce9d}
 	\tags{definition, satz, DGL-System}
 	
 	\begin{field}  % Question
@@ -307,7 +309,7 @@
 \end{note}
 
 \begin{note}
-	\xplain{UUID}
+	\xplain{bceb73cf-5355-453c-8021-a9f933e39c29}
 	\tags{definition, fortsetzung, 3.5.1}
 	
 	\begin{field}  % Question
@@ -327,7 +329,7 @@
 	\end{field}
 \end{note}
 \begin{note}
-	\xplain{UUID}
+	\xplain{3bdb77e0-cab7-493d-b4ae-42e25fc283fb}
 	\tags{satz, fortsetzung, 3.5.2}
 	
 	\begin{field}  % Question
@@ -351,7 +353,7 @@
 	\end{field}
 \end{note}
 \begin{note}
-	\xplain{UUID}
+	\xplain{48930130-59f6-47b4-9040-fd8445dad4ac}
 	\tags{definition, fortsetzung,, 3.5.3, 3.5.4}
 	
 	\begin{field}  % Question
@@ -385,7 +387,7 @@
 	\end{field}
 \end{note}
 \begin{note}
-	\xplain{UUID}
+	\xplain{439da001-039e-4c8c-8026-d4a44fef7f58}
 	\tags{satz, 3.6}
 	
 	\begin{field}  % Question
@@ -408,7 +410,7 @@
 \end{note}
 
 \begin{note}
-	\xplain{UUID}
+	\xplain{006d7d21-f93d-4cbe-8c80-77702a0f32ee}
 	\tags{definition, satz LDGL, 3.7}
 	
 	\begin{field}  % Question
@@ -451,7 +453,7 @@
 	\end{field}
 \end{note}
 \begin{note}
-	\xplain{UUID}
+	\xplain{89e89e04-1b54-4e11-9574-a5a88dca32c1}
 	\tags{LDGLS}
 	
 	\begin{field}  % Question
@@ -556,7 +558,7 @@
 	\end{field}
 \end{note}
 	\begin{note}
-		\xplain{UUID}
+		\xplain{fb1f0502-666b-47eb-a9ac-f2d7c9f9277e}
 		\tags{LDGL, inhomogen,3.8.7}
 		
 		\begin{field}  % Question
@@ -575,7 +577,7 @@
 		\end{field}
 	\end{note}
 	\begin{note}
-		\xplain{UUID}
+		\xplain{ce3e61ed-cd0f-451f-8342-8ecea254449a}
 		\tags{LDGLS, konstante-koeffizienten, 3.9}
 		
 		\begin{field}  % Question
@@ -603,7 +605,7 @@
 		\end{field}
 		\end{note}
 		\begin{note}
-			\xplain{UUID}
+			\xplain{201048f4-7644-42c5-b811-2c31c2b80d0f}
 			\tags{LDGLS, konstante-koeffizienten, 3.9}
 			
 			\begin{field}  % Question
@@ -625,7 +627,7 @@
 			\end{field}
 		\end{note}
 		\begin{note}
-			\xplain{UUID}
+			\xplain{3bb07f22-0aed-4f81-bed3-4c36b307b1e2}
 			\tags{LDGLS, konstante-koeffizienten, 3.9}
 			
 			\begin{field}  % Question
@@ -660,7 +662,7 @@
 			\end{field}
 		\end{note}
 		\begin{note}
-			\xplain{UUID}
+			\xplain{68dcdd7a-ec39-4c6e-ae29-65b19273592b}
 			\tags{LDGLS, konstante-koeffizienten, 3.9.4}
 			
 			\begin{field}  % Question
