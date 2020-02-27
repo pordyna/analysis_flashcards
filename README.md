@@ -5,7 +5,7 @@ Die Karteikarten sind für das Programm Anki gedacht (https://apps.ankiweb.net/)
 Um anzufangen braucht ihr Anki und Latex (mit den benutzten Paketen, sehe den Header in den tex Dateien ) installiert haben.
 Dann braucht ihr nur noch die `.apkg`Datei im Anki zu öffnen. Alternativ könnt ihr auch mit den pdf Dateien aus dem Repository lernen. 
 
-Auf nachfrage kann ich auch den Deck mit den vor-generierten Karten hochladen, dass sollte, solange ihr die Karten nicht bearbeitet, auch ohne Latex funktionieren.
+Auf Nachfrage kann ich auch den Deck mit den vor-generierten Karten hochladen, dass sollte, solange ihr die Karten nicht bearbeitet, auch ohne Latex funktionieren.
 Die Datei wird nur eventuell ziemlich groß, da alle Karteikarten dann als Bilder gespeichert sind. 
 
 ## Wenn ihr die Karteikarten editieren, erweitern, kopieren möchtet:
