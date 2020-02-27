@@ -1,0 +1,720 @@
+% !TeX spellcheck = de_DE
+% !TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The first part of the header needs to be copied
+%       into the note options in Anki.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% layout in Anki:
+\documentclass[9pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{paperwidth=.5\paperwidth,paperheight=100in,left=2em,right=2em,bottom=1em,top=2em}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+ 
+% hyphenation:
+\usepackage[ngerman]{babel}
+
+% encoding:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% packages:
+\usepackage{parskip}
+\usepackage[free-standing-units=true]{siunitx}
+% Writng si units, numbers, list of numbers etc.
+\usepackage{gensymb}
+% Unified typseting of units outside of siuitx
+\usepackage{amsmath}
+\usepackage{amsfonts}  
+% Math features
+\usepackage{esdiff}
+% Typeseting of (partial)derivatives 
+\usepackage{commath}
+% More  derivatives. Not so nice like esdiif but adds
+% \dif comand for upright d in math mode.
+\usepackage{bm}
+% Bold font in math mode
+\usepackage{esint}
+% Some fancy integrals signs. Mutilpe integrals
+\usepackage{enumerate}
+% Different styles for enumerate lists
+\usepackage{multirow}
+% More advanced tabular
+\usepackage{physics}
+% Lots of usefull comannds for physicists. Vektors, nablas etc.
+\usepackage{amssymb, xfrac, bbold}
+% extra fonts and symbols 
+\usepackage{mathtools}
+% extension to amsmath, fixes, meany new tool
+\usepackage{isotope}
+\usepackage{empheq}
+%commands:
+\usepackage{ifthen}
+
+\newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Rk}{\mathbb{R}^k}
+\newcommand{\R}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{R}}
+	{\mathbb{R}^{#1}}}%
+\newcommand{\C}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{C}}
+	{\mathbb{C}^{#1}}}%	
+\renewcommand{\vec}[1]{\underline{#1}}
+\DeclarePairedDelimiter{\innerprod}\langle\rangle
+\newcommand{\Fr}{\mathcal{F}}
+\newcommand{\Hi}{\mathcal{H}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following part of header NOT to be copied into
+%            the note options in Anki.
+%          ! Anki will throw an errow !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  pdf layout:
+%
+\geometry{paperheight=74.25mm}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper,border shrink=0cm]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+% 
+%  notes, fields, tags:
+%
+\newcommand{\xfield}[1]{
+        #1\par
+        \vfill
+        {\tiny\texttt{\parbox[t]{\textwidth}{\localtag\\\globaltag\hfill\uuid}}}
+        \newpage}
+\newenvironment{field}{}{\newpage}
+\newif\ifnote
+\newenvironment{note}{\notetrue}{\notefalse}
+\newcommand{\localtag}{}
+\newcommand{\globaltag}{}
+\newcommand{\uuid}{}
+\newcommand{\tags}[1]{
+    \ifnote 
+        \renewcommand{\localtag}{#1}
+    \else
+        \renewcommand{\globaltag}{#1}
+    \fi 
+    }
+\newcommand{\xplain}[1]{\renewcommand{\uuid}{#1}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following line again needs to be copied 
+% into Anki:
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tags{mathe2::1sem::GDGL}
+
+\begin{note}
+	\xplain{f3af8756-23b0-4472-bdcd-0d3c40010b44}  %UUID
+	\tags{definition, 3.1.1, 3.1.2}
+	
+	\begin{field}  % Question
+		Definiere  eine gew"ohnliche Differentialgleichung (implizit).
+		Was versteht man unter einer L"osung der DGL?
+	\end{field}  
+	
+	\begin{field}  % Answer
+		Seien G ein Gebiet im $\R{n+2}$, $I$ ein Intervall, eine Funktion $x: I \rightarrow \R{}, 
+		t\mapsto x(t)$ $n$ mal differenzierbar und $F: G \rightarrow \R{}$.
+		Dann hei"st
+		\begin{equation*}
+			F(t,x,\dot{x}, \dots, x^{(n)}) = 0
+		\end{equation*}
+		
+		\textit{implizite} gew"ohnliche DGL der Ordnung $n$. 
+		
+		Sei $x\in C^n$, $x: (a,b) \mapsto \R{}$.  $x$ ist eine L"osung der DGL falls:
+		\begin{enumerate}
+			\item $\qty(t,x(t), \dot{x}(t), \dots x^{(n)}(t)) \in G \qquad \forall_{t\in (a,b)}$, und
+			\item die Gleichung $F=0$ ist erf"uhlt $\forall_{t\in (a,b)}$.
+		\end{enumerate}
+	\end{field}
+	
+	\begin{field}  % Question
+		Definiere  eine gew"ohnliche Differentialgleichung (explizit).
+	\end{field}  
+	
+	\begin{field}  % Answer
+				Sei $\tilde{G}$ ein Gebiet im $\R{n+1}$,  $I$ ein Intervall, eine Funktion $x: I \rightarrow \R, 
+		t\mapsto x(t)$ $n$ mal differenzierbar und $f: \tilde{G} \rightarrow \R{}.$
+		Dann hei"st
+		\begin{equation*}
+			x^{(n)} = f(t,x,\dot{x}, \dots, x^{(n-1)})
+		\end{equation*}
+		\textit{explizite}  gew"ohnliche DGL der Ordnung $n$.
+		
+		Sei $x\in C^n$, $x: (a,b) \mapsto \R{}$.  $x$ ist eine L"osung der DGL falls:
+		\begin{enumerate}
+			\item $\qty(t,x(t), \dot{x}(t), \dots x^{(n-1)}(t)) \in \tilde{G} \qquad \forall_{t\in (a,b)}$, und
+			\item die Gleichung $f=0$ ist erf"uhlt f"ur alle $t\in (a,b)$.
+		\end{enumerate}
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{caa48b6b-bfe0-4009-8d36-da9a13f48910}  %UUID
+	\tags{definition, 3.1.3}
+	
+	\begin{field}  % Question
+		Ein Anfangswertproblem  hei"st \textit{korrekt gestellt}, wenn..
+	\end{field}  
+	
+	\begin{field}  % Answer
+		genau eine L"osung existiert und eine stetige Abhängigkeit von den Anfangsbedingungen gew"ahrleistet ist. 
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{e7470fcc-afc7-4b91-a141-8e0d5c7677f8}  %UUID
+	\tags{GDGL, methode, 3.2.7.1}
+	
+	\begin{field}  % Question
+		Wie l"ost man $\dot{x} + f(t)x = g(t)$ mit der Eulerschen Methode? 
+	\end{field}  
+	
+	\begin{field}  % Answer
+		\begin{itemize}
+			\item Multipliziere mit $\exp(\int_{t_0}^{t}f(t') \dif t')$.
+			\item Fasse LHS als eine Abletiung nach $t$.
+			\item Integriere es auf.
+		\end{itemize}
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{512aa0ca-bf37-44a1-a507-4a2c51a90f65}  %UUID
+	\tags{satz, 3.3 , fixpunkt}
+	
+	\begin{field}  % Question
+		Wie lautet der Banachsche Fixpunktsatz?
+	\end{field}  
+	
+	\begin{field}  % Answer
+		Sei $(X,d)$ vollst"andiger metrischer Raum, sei $A \subseteq X$ abgeschlossen,
+		$T: A \rightarrow A$ kontrahierend mit Konktraktionszahl $q$. Dann:
+		\begin{enumerate}
+			\item $T$ hat genau einen Fixpunkt $x^*$ in $A$,
+			\item f"ur beliebige $x_0 \in A$ konvergiert $x_{n+1} = T{x_n}$ gegen $x^*$ mit $n \in \mathbb{N}$,
+			\item es gilt die Absch"atzung:
+			\begin{equation*}
+				\mathrm{d} (x_n,x^*) \leq \frac{q^n}{1-q}\mathrm{d}(x_1,x_0)
+			\end{equation*} 
+		\end{enumerate}
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{97b4ffa4-d268-42a5-a0ca-51c3c4846cc8}  %UUID
+	\tags{definition, Lippschitz, 3.4.1, 3.4.8}
+	
+	\begin{field}  % Question
+		 $f:G\subseteq \R{2} \rightarrow \R{} \quad (t,x) \mapsto f(t,x)$ gen"ugt einer
+		 \textit{Lippschitzbedingung} bzg. des 2. Arguments auf $G$, wenn
+	\end{field}  
+	
+	\begin{field}  % Answer
+		$\exists L>0 \quad \forall t, x_1, x_2 \qq{mit} (t,x_1), (t,x_2) \in G$
+		\begin{equation*}
+			 \abs{f((t,x1) - f(t,x_2))} \leq L\abs{x_1 -x_2}
+		\end{equation*}
+	\end{field}
+		
+	\begin{field}  % Question
+		Definiere die Lippschitzbedingung f"ur Vektorfunktionen.
+	\end{field}
+	
+	\begin{field}  % Answer
+		$\vec{f}: \R{n+1} \supseteq D(\vec{f} \rightarrow \R{n} :\  (t,\vec{x}) \mapsto f(t, vec{x})$
+		gen"ugt einer \textit{Lippschitzbedingung} bzgl. $\vec{x}$ in $D(\vec{f})$, wenn
+		$\forall \vec{x}, \vec{y}$ mit $(t,\vec{x}), (t,\vec{y}) \in D(\vec{f})  \ \ \exists L >0$:
+		\begin{equation*}
+			\norm{\vec{f}(t,\vec{x}) - \vec{f}(t, \vec{y})}_n \leq L \norm{\vec{x} - \vec{y}}_n
+		\end{equation*}
+		
+		$\norm{\cdot}_n$ ist beliebige Norm in $\Rn$.
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{3cee940e-fb01-403a-a7b9-f98f1aac3aa7}
+	\tags{satz, picard-lindeloef, 3.4.2}
+	
+	\begin{field}  % Question
+		Wie lautet der Satz von Picard-Lindel"of "uber die Existenz und Eindeutigkeit der L"osung.
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $\dot{x} = f(t,x)$ mit $x_0= x(t_0)$ ein Anfangswertproblem (AWP) gegeben, $f$ erf"ulle die folgenden Bedingungen:
+		\begin{itemize}
+			\item $\exists a,b \in \R{}_{>0}$ so, dass $f$ auf dem Rechteck
+			\begin{equation*}
+				Q\coloneqq \qty{(t,x) \in \R{2}: \abs{t-t_0} \leq a, \abs{x-x_0} \leq b}
+			\end{equation*}
+			stetig und durch $M$ beschr"ankt ist. 
+			\item $f$ ist auf $Q$ Lippschitzstetig bzg. $x$ mit Lippschitzkonstante $L$. 
+		\end{itemize}
+		Dann existiert geanu eine lokale L"osung des AWP, d.h. $\exists \sigma>0$ so ,dass auf
+			$J\coloneqq \qty[t_0 - \sigma, t_0 + \sigma]$  genau eine L"osung existiert. Man kann $\sigma$ so w"ahlen: $\sigma < \min\qty{a, \frac{b}{m}, \frac{1}{L}}$.
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{6bb4d661-91ce-4ef5-9bfd-e5a68ffcce9d}
+	\tags{definition, satz, DGL-System}
+	
+	\begin{field}  % Question
+		Ein explizites Differentialgleichungssystem $n$-ter Ordnung der Dimension $k$ ist definiert als: 
+	\end{field}
+	
+	\begin{field}  % Answer
+		\begin{equation*}
+			\vec{x}^{(n)} = \vec{f}(t, \vec{x}(t), \dots, \vec{x}^{n-1}(t))
+		\end{equation*}
+		wobei $\vec{x}(t) = \begin{pmatrix} x_1(t)\\ \vdots\\ x_k(t)  \end{pmatrix}$,
+		$f: \R{} \times \R{}^{n\cdot k} \supseteq D(f) \rightarrow \R{k}$. 
+	\end{field}
+		
+	\begin{field}  % Question
+		Wie l"asst sich eine Differentialgleichung $n$-ter Ordnung auf ein Differentialgleichungssystem 1. Ordnung der Dimension $k$ transformieren?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $x  \in C^n((\alpha, \beta), \R{})$ eine L"osung einer skalaren DGL $n$-ter Ordnung
+		($x^{(n)} = f(t,x, \dots, x^{(n-1)})$ eventuell mit Anfangsbedingungen. 
+		 
+		Definiere $\vec{z}(t) \in \R{n}$ mit $ z_i(t) = x(t)^{(i-1)}$,
+		  $i\in \qty{1,\dots,n}$. Es gilt $\dot{z}_i = z_{i+1} = x^{(i)}$.
+		
+		$z = \vec{z}(t)$ eine L"osung des $n$-dim. DGL-Systems 1. Ordnung:
+		\footnotesize
+		\begin{equation*}
+			\vec{\dot{z}}(t) = \begin{pmatrix}z_2(t) \\ \vdots \\ z_n(t) \\ f(t, \vec{z})  \end{pmatrix} = \vec{g}(t,\vec{z}) \qquad D(\vec{g}) = (\alpha,\beta) \times \Rn
+		\end{equation*} 
+		\normalsize
+		F"ur $\vec{z}(t_0) = \vec{z_0}$  setze  $z^0_i = x^{(i-1)}(t_0)$. 
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{bceb73cf-5355-453c-8021-a9f933e39c29}
+	\tags{definition, fortsetzung, 3.5.1}
+	
+	\begin{field}  % Question
+		Definiere den Begriff einer Fortsetzung einer L"osung. 
+	\end{field}
+	
+	\begin{field}  % Answer
+		Eine L"osung $y$ des AWP 
+		\begin{equation*}
+		\dot{x}=f(t,x(t)), D(f) \subseteq \R{} \times \R, x(t_0)=X_0
+		\end{equation*}
+		auf einem Intervall $(a',b')$ hei"st \textit{Fortsetzung von x} (x eine lokale L"osung des AWP auf $(a,b)$), wenn:
+		\begin{itemize}
+			\item $(a,b) \subset (a',b')$,
+			\item $y(t) \equiv x(t) \forall_{t\in (a,b)}$
+		\end{itemize}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{3bdb77e0-cab7-493d-b4ae-42e25fc283fb}
+	\tags{satz, fortsetzung, 3.5.2}
+	
+	\begin{field}  % Question
+		Wie lautet der Satz "uber die Eindeutigkeit der Fortsetzung?
+	\end{field}
+		
+	\begin{field}  % Answer
+		Sei ein  
+		\begin{empheq}[left= \text{AWP:~} \empheqlbrace]{align*}
+		&\dot{x}=f(t,x(t)), D(f) \subseteq \R{} \times \R{} \\ 
+		 &x(t_0)=x_0
+		\end{empheq}
+		gegeben.
+		
+		 Sei $Q=[t_1,t_2] \times [x_1,x_2]$ eine Menge auf der das AWP mit $(t_0, x_0) \in Q$
+		lokal l"osbar ist. Sei $x$ auf $(a,b) \in [t_1,t_2]$ eine L"osung des AWPs. Seien $y_1$, $y_2$
+		zwei Fortsetzungen von x auf $(a',b')\in [t_1,t_2]$. Dann gilt: 
+		\begin{equation*}
+		y_1(t) = y_2(t) \qquad \forall_{t\in (a',b')}
+		\end{equation*}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{48930130-59f6-47b4-9040-fd8445dad4ac}
+	\tags{definition, fortsetzung,, 3.5.3, 3.5.4}
+	
+	\begin{field}  % Question
+		Eine L"osung, die nicht mehr fortsetzbar ist, hei"st...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... \textit{maximal}.
+	\end{field}
+		
+	\begin{field}  % Question
+		Eine L"osung hei"st \textit{maximal}, wenn...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... sie nicht mehr fortsetzbar ist.
+	\end{field}
+		
+	\begin{field}  % Question
+		Wie lautet der Satz "uber die maximale L"osung?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $G \subset \R{2}$ ein beschr"anktes Gebiet. $f: G \rightarrow \R{}$ gen"uge den Bedingungen vom Satz von Picard/Lindel"of. Dann gilt:
+		\begin{enumerate}
+			\item $\exists!$ eine maximal L"osung $x_{\text{max}}$ des AWP (auf $(a,b)$).
+			\item F"ur $u \coloneqq \lim\limits_{t\rightarrow a^+}x_{\text{max}}(t)$,
+			$v\coloneqq \lim\limits_{t\rightarrow b^-}x_{\text{max}}(t)$ \\
+			gilt $(a,u), (b,v) \in \partial G$.
+		\end{enumerate}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{439da001-039e-4c8c-8026-d4a44fef7f58}
+	\tags{satz, 3.6}
+	
+	\begin{field}  % Question
+		Wie lautet der Satz "uber die Absch"atzung der Differenz von L"osungen (stetige Abhängigkeit)?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $\dot{x}=f(t,x)$, $f$ stetig auf einem Streifen $(a,b)\times \R{}$. F"ur jedes abgeschlossene Intervall $[a',b'] \subset (a,b)$ existieren eine Lippschitzkonstante $L'$ mit:
+		\begin{equation*}
+			\forall_{t \in [a', b']} \forall_{x_1, x_2 \in \R{}}: \quad
+			\abs{f(t,x_1) - f(t,x_2)} \leq L'\norm{x_1 - x_2}
+		\end{equation*}
+		
+		Seien nun $x(t), \hat{x}(t)$ L"osungen eines AWP mit $x(t_0)=x_0, \\  \hat{x}(t_0) = \hat{x}_0$
+		auf $[a',b']$ MIT $t_o \in (a',b')$. Dann gilt:
+		\begin{equation*}
+			\forall_{t \in [a', b']}: \ \abs{x(t) - \hat{x}(t)} \leq e^{L'\abs{t-t_0}} \cdot \norm{x_0-\hat{x}_0}
+		\end{equation*}
+	\end{field}
+\end{note}
+
+\begin{note}
+	\xplain{006d7d21-f93d-4cbe-8c80-77702a0f32ee}
+	\tags{definition, satz LDGL, 3.7}
+	
+	\begin{field}  % Question
+		Wie ist ein linearer DGL-System 1. Ordnung definiert?
+	\end{field}
+	
+	\begin{field}  % Answer
+		\begin{equation*}
+		\dot{x} = A(t)x(t) + f(t), \qq{homogen falls} f(t) =0
+		\end{equation*}
+		\footnotesize
+		$x(t) = \begin{pmatrix}x_1(t) \\ \vdots \\ x_n(t) \end{pmatrix}$, \quad $A(t)=
+			\begin{pmatrix}
+				a_{11}(t) & \dots & a_{1n}(t) \\
+				\vdots    &       & \vdots \\
+				a_{n1}(t) & \dots & a_{nn}(t) 
+			\end{pmatrix}$,
+		
+		
+		$f(t) = 
+			\begin{pmatrix}
+				f_1(t) \\ \vdots \\ f_n(t)
+			\end{pmatrix}$
+		gegeben auf $t\in I = (a,b)$
+	\end{field}
+		
+	\begin{field}  % Question
+		Gibt den Satz "uber die
+		Existenz und Eindeutigkeit der L"osung eines AWP zu einer linearen DGL an.
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $L(t,x)=f(t)$, $x^{(i)}(t_0) = \chi_i$, $i \in \qty{0,\dots, n-1}$ ein AWP.
+		
+		Die Koeffizienten $a_i(t)$ von $L(t,x)$ seien aus $\C{}$ oder $\R{}$ und stetig auf $I \subset \R{}$, $f$ stetig auf $I$. Seien $t_0\in I, \chi_i \in \R{}$  gegeben.
+		
+		 Dann besitzt das AWP genau eine L"osung.
+		 
+		 Diese existiert auf dem ganzen Intervall $I$ und h"angt auf jedem kompakten Teilintervall von $I$ von den ABen $a_i(t),f(t)$ stetig ab.
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{89e89e04-1b54-4e11-9574-a5a88dca32c1}
+	\tags{LDGLS}
+	
+	\begin{field}  % Question
+		Sei ein linearer homogener DGL-System 1. Ordnung und $n$-ten Dimension gegeben. Dann hei"st ein System von 
+		$n$ lin. unabh"angigen L"osungen...
+	\end{field}
+	
+	\begin{field}  % Answer
+		\textit{Fundamentalsystem.}
+	\end{field}
+		
+	\begin{field}  % Question
+		Die Fundametalmatrix ist...
+	\end{field}
+	
+	\begin{field}  % Answer
+		die L"osungsmatrix $\Phi(t)$ ($(x_1|x_2|...)$ L"osungen als Spalten.) aus $n$ lin. unabh"angigen L"osungen. (Das zugeh"orige homogene LDGLS ist $n$-ter Ordnung).
+	\end{field}
+		
+	\begin{field}  % Question
+		Gib drei äquivalente Aussage zu: Eine quadratische L"osungsmatrix $\Phi(t)$ ist die Fundamentalmatrix.
+	\end{field}
+	
+	\begin{field}  % Answer
+		\begin{itemize}
+			\item Die Spalten von $\Phi(t)$ bzw. die einzelne L"osungen sind linear unabh"angig ,
+			\item $\forall_{t\in I}: \quad \text{rang}\Phi(t)$ ist maximal,
+			\item $\exists_{t\in I}: \quad \text{rang}\Phi(t)$ ist maximal.
+		\end{itemize}
+	$I$ Stetigkeitsintervall auf dem das LDGLS gegeben ist.  
+	\end{field}
+		
+	\begin{field}  % Question
+		Wronskideterminante ist definiert als...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... die Determinante der Fundamentalmatrix.
+	\end{field}
+		
+	\begin{field}  % Question
+		Die Determinante der Fundamentalmatrix hei"st...
+	\end{field}
+	
+	\begin{field}  % Answer
+		... Wronskideterminante.
+	\end{field}
+		
+	\begin{field}  % Question
+		Satz "uber die Wronski-Determinante.
+		F"ur $n$ L"osungen eines homogenen LDGLS 1.Ordnung und $n$-ter Dimension sind äquivalent: 
+		\begin{itemize}
+			\item Die L"osungen bilden ein Fundamentalsystem.
+			\item ...
+		\end{itemize}  
+	\end{field}
+	
+	\begin{field}  % Answer
+		...
+		\begin{itemize}
+			\item $\forall t \in I$ $W(t)\neq0$,
+			\item $\exists t \in I$ $W(t)\neq0$,
+		\end{itemize}
+	$I$ Stetigkeitsintervall auf dem das LDGLS gegeben ist.
+	$W(t)$ Wronski-Determinante.
+	\end{field}
+		
+	\begin{field}  % Question
+		Satz "uber die Existenz und Eindeutigkeit der Fundamentalmatrix lautet:
+		
+		(+Beweisidee)
+	\end{field}
+
+	\begin{field}  % Answer
+		Es g"abe ein homogenes lineares DGL-System mit der Ordnung 1 und Dimension $n$.
+		\begin{equation*}
+			\dot{\vec{x}} = A(t)\vec{x} 
+		\end{equation*}
+		Die Koeffizientenmatrix  $A(t)$ sei stetig auf $I=(a,b)$. Dann existiert,f"ur die obige Gleichung, auf $I$ eine Fundamentalmatrix von $n$ L"osungen.
+		
+		\textbf{Beweisidee}: \\
+		W"ahle $n$ beliebige, voneinander linear unabh"angige Anfangswerte, f"ur ein festes $t_0 \in I$. Dann gibt es
+		eine eindeutige L"osung zu jedem der AWP auf ganz $I$. 
+		Es gen"ugt zu zeigen, dass die L"osungen f"ur ein $t$ 
+		linear unabh"angig sind. Das gilt aber f"ur $t_0$.
+	\end{field}
+		
+	\begin{field}  % Question
+		Wie lautet der Satz "uber die Bedeutung der Fundamentalmatrix?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Es g"abe ein homogenes lineares DGL-System  ersten Ordnung:
+		\begin{equation*}
+		\dot{\vec{x}} = A(t)\vec{x} 
+		\end{equation*}
+		Ist $\Phi(t)$ eine Fundamentalmatrix von dem DGL-System auf $(a,b)$, dann ist die Allgemeine L"osung der Gleichung auf dem Gebiet $G=\qty{(t,x) \ | \ t\in(a,b), \norm{x} < \infty}$:
+		\begin{equation*}
+			x(t)= \Phi(t) \cdot c
+		\end{equation*}
+		wobei $c$ ein beliebiger Vektor ist. 
+	\end{field}
+\end{note}
+	\begin{note}
+		\xplain{fb1f0502-666b-47eb-a9ac-f2d7c9f9277e}
+		\tags{LDGL, inhomogen,3.8.7}
+		
+		\begin{field}  % Question
+			Wie findet man die L"osung eines inhomogenen linearen  DGL-System, falls die Fundamentalmatrix $\Phi$ des zugeh"origen homogenen DGL-System schon bekannt ist?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Die L"osung hat die Form:
+			\begin{equation*}
+				x(t) = \underbrace{\Phi\cdot c}_{\text{allg. Lsg.  der hom. Glg.}} + \underbrace{\Psi}_{\text{eine spezielle Lsg. der inhom. Glg.}}
+			\end{equation*}
+			Sie kann mittels Variation der Konstanten bestimmt werden. Es gilt die folgende L"osungsformel:
+			\begin{equation*}
+				x(t) = \Phi(t)\qty[c + \int_{t_0}^{t}\Phi^{-1}(t')f(t')\dif t']
+			\end{equation*}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{ce3e61ed-cd0f-451f-8342-8ecea254449a}
+		\tags{LDGLS, konstante-koeffizienten, 3.9}
+		
+		\begin{field}  % Question
+			Es g"abe einen linearen DGL-System der Dimension $n$
+			\textbf{mit konstanten Koeffizienten}.
+			\begin{equation*}
+				\dot{x} = Ax
+			\end{equation*}
+			Wie l"ost man  das System mit der Ansatzmethode? 
+		\end{field}
+		
+		\begin{field}  % Answer
+	
+			\textbf{Ansatz:} $x(t)= c \cdot e^{\lambda t}$,
+				$\quad \lambda\in \C{}, c\in \C{n}$.
+			
+			
+			$\Rightarrow$ Eigenwertgleichung:
+			\begin{equation*}
+				Ac = \lambda c \Rightarrow \text{det}(A - \lambda \mathbb{1}) \overset{!}{=} 0
+			\end{equation*}
+			Bestimme die Eigenwerte und Eigenvektoren.
+			
+			Dann sind $x_i = c_ie^{\lambda_i t}$ L"osungen.
+		\end{field}
+		\end{note}
+		\begin{note}
+			\xplain{201048f4-7644-42c5-b811-2c31c2b80d0f}
+			\tags{LDGLS, konstante-koeffizienten, 3.9}
+			
+			\begin{field}  % Question
+				Es g"abe einen linearen homogenen  DGL-System der Dimension $n$
+				\textbf{mit konstanten Koeffizienten}
+				$\dot{x} = Ax$.
+
+				 Was gilt f"ur L"osungen, die mit der Ansatzmethode bestimmt wurden, falls $\A \in \C{n\times n}$ und was gilt f"ur  $\A \in \R{n\times n}$?
+			\end{field}
+			
+			\begin{field}  % Answer
+				$A,c_i, \lambda_i$,komplex: Man bekommt ein Fundamentalsystem falls $A$ $n$ verschiedene Eigenwerte hat.
+				$A$ reellwertig:
+				\begin{itemize}
+					\item Fundamentalsystem wenn $A$ $n$ lin. unab. Eigenvektoren besitzt. 
+					\item Ein komplexer Eigenwert tritt immer gemeinsam mit einem dazu c.c. auf.
+					\item Aus einer komplexen L"osung $x(t)$ bekommt man zwei reelle L"osungen $u(t)= \real (x(t))$ und $v(t)=\imaginary (x(t))$.
+				\end{itemize} 
+			\end{field}
+		\end{note}
+		\begin{note}
+			\xplain{3bb07f22-0aed-4f81-bed3-4c36b307b1e2}
+			\tags{LDGLS, konstante-koeffizienten, 3.9}
+			
+			\begin{field}  % Question
+				Es g"abe einen homogenen linearen DGL-System der Dimension $n$
+				\textbf{mit konstanten Koeffizienten}
+				$\dot{x} = Ax$. Au"serdem g"abe es zu dem System ein AWP mit $x(t_0)=x_0$.
+				Dann ist $e^At$...
+			\end{field}
+			
+			\begin{field}  % Answer
+				... Fundamentalmatrix von dem DGL-System auf \\ ${I=(-\infty, \infty)}$.
+				
+				Das Anfangswertproblem hat die L"osung:
+				\begin{equation*}
+					x(t) = e^{(t-t_0) A} \cdot x_0
+				\end{equation*}  
+			\end{field}
+				
+			\begin{field}  % Question
+				Es g"abe ein AWP zu einem inhomogenen linearen DGL-System der Dimension $n$
+				\textbf{mit konstanten Koeffizienten}
+				$\dot{x} = Ax+ f(t), x(t_0)=x_0$.
+				Wie berechnet man die L"osung?
+			\end{field}
+			
+			\begin{field}  % Answer
+				Es gilt die folgende L"osungsformel:
+				\begin{equation}
+					x(t) = e^{(t-t_0)A} x_0 + \int_{t_0}^{t}
+					e^{(t-t')A}f(t')\dif t'
+				\end{equation}
+			\end{field}
+		\end{note}
+		\begin{note}
+			\xplain{68dcdd7a-ec39-4c6e-ae29-65b19273592b}
+			\tags{LDGLS, konstante-koeffizienten, 3.9.4}
+			
+			\begin{field}  % Question
+				Wie berechnet man $e^At$ wenn $A$ diagonal?
+			\end{field}
+			
+			\begin{field}  % Answer
+				\begin{equation*}
+					e^{At} = 
+						\begin{pmatrix}
+					     e^{a_{11}t} & 		&			\\
+					     			&\ddots &			 \\
+					     			&		&e^{a_{nn}t}
+						\end{pmatrix}
+				\end{equation*}
+			\end{field}
+				
+			\begin{field}  % Question
+				Wie berechnet man $e^At$ wenn $A$ diagonalisierbar?
+			\end{field}
+			
+			\begin{field}  % Answer
+
+				$A=SDS^{-1}$ $S$ eine regul"are Matrix, D ist diagonal. 
+				\begin{equation*}
+				e^{At} = Se^{Dt}S^{-1}
+				\end{equation*}
+				\textbf{Diagonalisieren:}\\
+		
+				Man findet $D$ mit dem Charakteristischen Polynom  $ \chi_A=0$. Als spalten von $S$ nimmt man die zu den Eigenwerten zugeh"orige Eigenvektoren.  	 
+			\end{field}
+				
+			\begin{field}  % Question
+					Wie berechnet man $e^At$ wenn $A$ nicht diagonalisierbar?
+			\end{field}
+			
+			\begin{field}  % Answer
+				Man bringt es auf die Jordansche Normalform mit $r$ Jordan-Bl"ocken.
+				\begin{align*}
+					e^{At} =& Se^{Jt}S^{-1}\\
+						   =& S \ \text{diag}\qty(e^{J_1(\lambda(1))t}, \dots, e^{J_r(\lambda_r)t}) S^{-1} \\
+						   =&S \ \text{diag}\qty(e^{\lambda_1 t}H_1(t), \dots, e^{\lambda_r t}H_r(t)) S^{-1}
+				\end{align*}
+				\begin{equation*}
+				H_i = 
+					\begin{pmatrix}
+						1 & \frac{t}{1!} & \dots  & \frac{t^{n-1}}{(n-1)!} \\
+						  & \ddots       & \ddots & \vdots                 \\
+						  &              & \ddots & \frac{t}{1!}           \\
+						  &              &        & 1
+					\end{pmatrix}	
+				\end{equation*}
+			\end{field}
+		\end{note}
+\end{document}

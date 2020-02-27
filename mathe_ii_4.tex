@@ -1,0 +1,488 @@
+% !TeX spellcheck = de_DE
+% !TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The first part of the header needs to be copied
+%       into the note options in Anki.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% layout in Anki:
+\documentclass[9pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{paperwidth=.5\paperwidth,paperheight=100in,left=2em,right=2em,bottom=1em,top=2em}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+ 
+% hyphenation:
+\usepackage[ngerman]{babel}
+
+% encoding:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% packages:
+\usepackage{parskip}
+\usepackage[free-standing-units=true]{siunitx}
+% Writng si units, numbers, list of numbers etc.
+\usepackage{gensymb}
+% Unified typseting of units outside of siuitx
+\usepackage{amsmath}
+\usepackage{amsfonts}  
+% Math features
+\usepackage{esdiff}
+% Typeseting of (partial)derivatives 
+\usepackage{commath}
+% More  derivatives. Not so nice like esdiif but adds
+% \dif comand for upright d in math mode.
+\usepackage{bm}
+% Bold font in math mode
+\usepackage{esint}
+% Some fancy integrals signs. Mutilpe integrals
+\usepackage{enumerate}
+% Different styles for enumerate lists
+\usepackage{multirow}
+% More advanced tabular
+\usepackage{physics}
+% Lots of usefull comannds for physicists. Vektors, nablas etc.
+\usepackage{amssymb, xfrac, bbold}
+% extra fonts and symbols 
+\usepackage{mathtools}
+% extension to amsmath, fixes, meany new tool
+\usepackage{isotope}
+\usepackage{empheq}
+%commands:
+\usepackage{ifthen}
+
+\newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Rk}{\mathbb{R}^k}
+\newcommand{\R}[1]{%
+	\ifthenelse{\equal{#1}{}}
+		{\mathbb{R}}
+		{\mathbb{R}^{#1}}}%
+\newcommand{\C}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{C}}
+	{\mathbb{C}^{#1}}}%	
+\renewcommand{\vec}[1]{\underline{#1}}
+\DeclarePairedDelimiter{\innerprod}\langle\rangle
+\newcommand{\Fr}{\mathcal{F}}
+\newcommand{\Hi}{\mathcal{H}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following part of header NOT to be copied into
+%            the note options in Anki.
+%          ! Anki will throw an errow !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  pdf layout:
+%
+\geometry{paperheight=74.25mm}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper,border shrink=0cm]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+% 
+%  notes, fields, tags:
+%
+\newcommand{\xfield}[1]{
+        #1\par
+        \vfill
+        {\tiny\texttt{\parbox[t]{\textwidth}{\localtag\\\globaltag\hfill\uuid}}}
+        \newpage}
+\newenvironment{field}{}{\newpage}
+\newif\ifnote
+\newenvironment{note}{\notetrue}{\notefalse}
+\newcommand{\localtag}{}
+\newcommand{\globaltag}{}
+\newcommand{\uuid}{}
+\newcommand{\tags}[1]{
+    \ifnote 
+        \renewcommand{\localtag}{#1}
+    \else
+        \renewcommand{\globaltag}{#1}
+    \fi 
+    }
+\newcommand{\xplain}[1]{\renewcommand{\uuid}{#1}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following line again needs to be copied 
+% into Anki:
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tags{mathe2::1sem::Distributionen}
+	\begin{note}
+		\xplain{209bf43d-23b8-4c25-a7f0-77f2ab721b9e}
+		\tags{}
+		
+		\begin{field}  % Question
+			Der Schwarzraum $D(\Omega)$ ist ...
+		\end{field}
+		
+		\begin{field}  % Answer
+			der Raum der unendlich oft differenzierbaren Funktionen, auf $\Omega$, mit kompakten Tr"ager $C^\infty_c(\Omega)$.
+		\end{field}
+	\end{note}
+		\begin{note}
+			\xplain{31dae087-461c-4fb0-b899-69f8c9fba417}
+			\tags{}
+			
+			\begin{field}  % Question
+				Der Schwarzraum $S$ ist...
+			\end{field}
+			
+			\begin{field}  % Answer
+				der Raum der schnell fallenden Funktionen. Das sind $\varphi \in C^\infty$, auf ganz $\R{n}$ f"ur die f"ur beliebige
+				Multiindizes $\alpha, \beta$ und ein Vektor $x$ $x^\alpha D^\beta \varphi$ beschr"ankt ist.
+			\end{field}
+		\end{note}
+		\begin{note}
+			\xplain{d17d92bb-6f32-414a-85e2-ad05c8221605}
+			\tags{}
+			
+			\begin{field}  % Question
+				Wie ist die Konvergenz im Schwarzraum $D(\Omega)$  definiert?
+			\end{field}
+			
+			\begin{field}  % Answer
+				\begin{equation*}
+					\lim\limits_{m\rightarrow\infty} \varphi_m = \varphi \quad \text{in} D
+				\end{equation*}
+				falls $\exists K \subseteq \Rn$ kompakt mit:
+				\begin{enumerate}
+					\item $\forall_{m \in \mathbb{N}}: \ \text{supp}\varphi_m \subseteq K$ ,
+					\item $D^\alpha\varphi_m \rightarrow D^\alpha\varphi$ gleichm"a"sig auf $\Omega$. 
+				\end{enumerate}
+			\end{field}
+		\end{note}
+			\begin{note}
+				\xplain{df8ad57b-bcf6-4826-8dc0-8c97a582cd0e}
+				\tags{}
+				
+				\begin{field}  % Question
+					Wie ist die Konvergenz im Schwarzraum $S$  definiert?
+					Wie lauten die äquivalente Bedingungen?
+				\end{field}
+				
+				\begin{field}  % Answer
+					\begin{equation*}
+					\lim\limits_{m\rightarrow\infty} \varphi_m = \varphi \quad \text{in} S
+					\end{equation*}
+					genau dann, wenn $\forall$ Multiindizes $\alpha, \beta$
+					\begin{equation*}
+						x^\alpha D^\beta\varphi_m \rightarrow x^\alpha D^\beta\varphi
+					\end{equation*}
+					gleichm"a"sig auf ganz $\Rn$.
+					
+					"Aquivalent dazu ist: $\forall_{k\in \mathbb{N}_0}$ und f"ur jeden Multiindex $\alpha$ gilt
+					\tiny\begin{equation*}
+						\qty(1+\abs{x}^2)^kD^\alpha\varphi_m(x) \overset{\text{glm.}}{\rightarrow}
+						\qty(1+\abs{x}^2)^kD^\alpha\varphi(x)
+					\end{equation*}
+					\normalsize
+					Auch "aquivalent : $\forall k \in \mathbb{N}_0 : \norm{\varphi_n - \varphi}_k \rightarrow 0$ 
+				\end{field}
+				\end{note}
+				\begin{note}
+					\xplain{9d3022eb-bcb3-4ebd-9d9a-e47e352b6adc}
+					\tags{}
+					
+					\begin{field}  % Question
+						Was sind $D'$ und $S'$.
+					\end{field}
+					
+					\begin{field}  % Answer
+						Die dazugeh"orige Dualr"aume. Also R"aume der stetigen Funktionale auf $D$ (oder$S$).
+					\end{field}
+						
+					\begin{field}  % Question
+						Welche Funktionen k"onnen mit Distributionen multipliziert werden, um eine
+						neue Distribution zu definieren?
+					\end{field}
+					
+					\begin{field}  % Answer
+						F"ur $T\in D'(\Omega)$ gilt es f"ur  $f\in C^\infty(\Omega)$.
+						F"ur $T'\in S'$ gilt es f"ur  $f\in P^\infty_n$.
+					\end{field}
+						
+					\begin{field}  % Question
+						Welche Funktionen erzeugen regul"are Distributionen? 
+					\end{field}
+					
+					\begin{field}  % Answer
+						$f\in L^1_{\text{loc}}$ erzeugt $[f]\in D'$.
+						
+						$f \in P_n$ erzeugt $[f] \in S'$.
+					\end{field}
+						
+					\begin{field}  % Question
+						Welche Operationen gibt es f"ur Distributionen?
+					\end{field}
+					
+					\begin{field}  % Answer
+						\begin{itemize}
+							\item Addition und skalare Multiplikation (da Vektorraum),
+							\item Multiplikativit"at,
+							\item Ableitungen,
+							\item schwache Konvergenz,
+							\item Tensorprodukt,
+							\item Faltung (nur geeignete Distributionen),
+							\item Fouriertransformation (nur f"ur $T\in S'$).
+						\end{itemize}
+					\end{field}
+						
+					\begin{field}  % Question
+						Wie definiert man Die Ableitung einer Distribution?
+					\end{field}
+					
+					\begin{field}  % Answer
+						\begin{equation*}
+							(D^\alpha T)(\varphi) \coloneq (-1)^{\abs{\alpha}}T(D^\alpha \varphi)
+						\end{equation*}
+					\end{field}
+						
+					\begin{field}  % Question
+						Rechenregel f"ur Ableitungen von Distributionen:
+					\end{field}
+					
+					\begin{field}  % Answer
+						\begin{itemize}
+							\item jedes $T\in D'$ ist beliebig oft diif'bar,
+							\item $D^\alpha(D^\beta T) = D^\beta(D^\alpha T) = D^{\alpha + \beta}$,
+							\item Sei $f\in C^\infty$ dann gilt ($\alpha,\beta\gamma$ Multiindizes):
+							\begin{equation*}
+								D^\gamma(f\cdot T) = \sum_{\alpha + \beta = \gamma} \frac{\gamma!}{\alpha!\beta!}(D^\alpha f)(D^\beta T)
+							\end{equation*}
+						\end{itemize}
+					\end{field}
+						
+					\begin{field}  % Question
+						Wie ist der Tensorprodukt regul"aren Distributionen definiert?
+					\end{field}
+					
+					\begin{field}  % Answer
+						$\Omega_x \subset \R{m}, \Omega_y \subset \Rn, \Omega_z = \Omega_x \times \Omega_y \subseteq \R{m+n}$
+						
+						Mit dem Satz von Fubini:
+						\begin{align*}
+						\innerprod{[f]\otimes [g], \chi} =& \int_{\Omega_z} (f \otimes x)(z)\chi(z)\dif^{m+n}z\\
+						 =& \innerprod{[f]_x, \innerprod{[g]_x, \chi(x,y)}} \\
+						=&\innerprod{[g]_y, \innerprod{[f]_y, \chi(x,y)}}
+						\end{align*}
+					\end{field}
+						
+					\begin{field}  % Question
+						Wie st das Tensorprodukt allgemeiner Distributionen definiert?
+					\end{field}
+					
+					\begin{field}  % Answer
+						$R\coloneqq S\otimes T \in D'(\R{m+n})$ mit:
+						\begin{itemize}
+							\item $\forall \varphi \in D(\R{m}) \ \forall \psi \in D(\Rn): \ R(\varphi \otimes \psi) = S(\phi) \cdot T(\psi)$,
+							\item $\forall \rho \in D(\R{m+n}): R(\rho) = S(T(\rho_x))$, wobei \\
+							$\rho_x : \R{n} \rightarrow \R{}, \ y \mapsto \rho(x,y), \quad \rho_x \in D(\R{m})$
+						\end{itemize}						
+					\end{field}
+						
+					\begin{field}  % Question
+						Eigenschaften des Tensorprodukts von Distributionen:
+					\end{field}
+					
+					\begin{field}  % Answer
+						\begin{itemize}
+							\item $\innerprod{S_x,\innerprod{T_y, \varphi(x,y)}} = \innerprod{T_y,\innerprod{ T_x, \varphi(x,y)}} \forall \varphi \in D(\Omega_z)$.
+							\item Das Tensorprodukt ist im jedem Faktor stetig.
+							\item Es ist assoziativ.
+							\item Es gilt: $D^\alpha_xD^\beta_y (S_x\otimes T_y) = D^\alpha_xS_x\otimes D^\beta_y T_y $.
+							\item $f\in C^\infty(\Omega_x), g \in C^\infty(\Omega_y), S_x \in D'(\Omega_x), T_y
+							\in D'(\Omega_y)$: 
+							\begin{equation*}
+								(f\otimes g) (S_x \otimes T_y) = (fS_x)\otimes(gT_y)
+							\end{equation*}
+						\end{itemize}
+					\end{field}
+				\end{note}
+			\begin{note}
+				\xplain{0e34d028-ac88-4c20-a15a-3b2eca92028c}
+				\tags{}
+				
+				\begin{field}  % Question
+					Wie ist der Raum der polynombeschr"ankten Funktionen (Funktionen von polynomialen Wachstum) $P_n$ (bzw. der Raum $P^\infty_n$) definiert?
+				\end{field}
+				
+				\begin{field}  % Answer
+					 \begin{align*}
+					 	P_n = \big\{f\in L^0(\Rn)\ | \ \forall x \in \Rn \exists m\in \mathbb{N}_0, C>0 :& \\ : \abs{f(x)} \leq C(1 + \abs{x}^2)^2\big\}&
+					 \end{align*}
+					 \begin{align*}
+					 P_n^\infty = \big\{f\in C^\infty(\Rn)\ | \ \forall x \in \Rn \forall \alpha, \exists m\in \mathbb{N}_0, C>0 :& \\ : \abs{D^\alpha f(x)} \leq C(1 + \abs{x}^2)^m&\big\}
+					 \end{align*}					
+				\end{field}
+			\end{note}
+			\begin{note}
+				\xplain{45e859a4-165d-4c5d-98dd-03e167ff0a38}
+				\tags{}
+				
+				\begin{field}  % Question
+					Eine Distribution $T\in D'(\Omega)$ hei"st \textit{finit}, wenn...
+				\end{field}
+				
+				\begin{field}  % Answer
+					... $\text{supp}T$ kompakt.
+				\end{field}
+					
+				\begin{field}  % Question
+					Wie definiert man Faltung von finiten Distributionen ? 
+				\end{field}
+				
+				\begin{field}  % Answer
+					Seien $S, T \in D'(\Rn)$ Sei $T$ finit. Sei $\eta \in D(\Rn)$, so dass $\exists$ eine Umgebung $U$ von $\text{supp}T$
+					mit $\forall x \in U : \eta(x)=1$.
+					
+					F"ur ein $\varphi \in D(\Rn)$ setze $\rho(x,y) \coloneqq \eta(y)\phi(x+y)$.
+					
+					Definiere Faltung:
+					\begin{equation*}
+					 S * T : D(\Rn) \rightarrow \C{}, \quad \varphi \mapsto S(T(\rho_x))= \innerprod{S_x,\innerprod{T_y, n(y)\varphi(x+y)}}
+					\end{equation*} 
+					Es gilt: $S*T \in D'(\Rn)$.
+					
+					Das hei"st also, dass zwei Distributionen miteinander faltbar sind, falls eine von denen, finit ist. Das ist aber nur eine hinreichende Bedingung. (Es gibt eine allgemeinere Definition "uber Grenzwert und mit einer 1 Folge.) 
+					
+					Das $\eta$ existiert wegen des Lemmas "uber \textit{glatte Abschmierfunktionen}.
+				\end{field}
+			\end{note}
+		\begin{note}
+			\xplain{485b40ca-ec84-4d95-a49b-4735b461a33f}
+			\tags{}
+			
+			\begin{field}  % Question
+				Wie ist die Fouriertransformation definiert?
+			\end{field}
+			
+			\begin{field}  % Answer
+				Sei $f\in L^1(\Rn)$, definiere:
+				\begin{align*}
+					\hat{f}(\xi) = \mathcal{F}(f(\xi)) \coloneqq& (2\pi)^{-n/2} \int_{\Rn} f(x) e^{-i\innerprod{\xi,x}} \dif^n x\\
+					\breve{f}(\xi) = \mathcal{F}^{-1}(f(\xi)) \coloneqq& (2\pi)^{-n/2} \int_{\Rn} f(x) e^{i\innerprod{\xi,x}} \dif^n x
+				\end{align*} 
+			\end{field}
+			
+		\begin{field}  % Question
+			Was gilt f"ur die Fouriertransformation der schnell fallenden Funktionen?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Die Fouriertransformation ist eine bijektive, $L^2(\Rn)$-isometrische, lineare Abbildung von $S_n$ auf $S_n$.
+		\end{field}
+			
+		\begin{field}  % Question
+			Wie ist die Fouriertransformation von Distributionen definiert? Was besagt der Theorem "uber die Fouriertransformation auf $S_n$?
+		\end{field}
+
+		\begin{field}  % Answer
+					 	$\mathcal{F}(T), T\in S_n$ wird auf folgende Weise definiert:
+			\begin{equation*}
+			\innerprod{\mathcal{F}(T), \varphi} \coloneqq \innerprod{T, \mathcal{F}(\varphi)}
+			\end{equation*}
+			Es ist ein linearer Isomorphismus von $S'$ auf sich mit der Inversen:
+			\begin{equation*}
+			\innerprod{\mathcal{F}^{-1}(T), \varphi(x)} = \innerprod{T, \mathcal{F}(\varphi(-x))}
+			\end{equation*}
+			$\mathcal{F}$ und $\mathcal{F}^{-1}$ sind stetig in dem Sinne, dass
+			\begin{equation*}
+			T_m \underset{S'}{\rightarrow} T \Rightarrow \mathcal{F}(T_m) 
+			\underset{S'}{\rightarrow} \mathcal{F}(T)
+			\end{equation*}
+		\end{field}
+			
+		\begin{field}  % Question
+			Welche Rechenregel gelten f"ur $\mathcal{F}$ auf $S_n$ bzw. $S_n'$?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Seien $\varphi \in S_n$, $\alpha,\beta \in \mathbb{N}_0^n$ Multiindizes, dann
+			\begin{itemize}
+				\item $D^\alpha_x\Fr\qty[\varphi(x)](p) = \Fr \qty[(-ix)^\alpha\varphi(x)](p)$,
+				\item $\Fr\qty[D_x^\beta\varphi(x)](p) = (ip)^\alpha\Fr\qty[\varphi(x)](p)$,
+				\item $p^\beta D^\alpha_p \Fr\qty[\varphi(x)](p) = i^{\abs{\alpha} + \abs{\beta}} \Fr\qty[D^\beta_x (x^\alpha \varphi(x))](p)$.
+			\end{itemize}
+		
+		
+			Sei noch $T$ in $S_n'$. Es gilt
+			\begin{itemize}
+				\item $D^\alpha \Fr(T) = \Fr\qty[(-ix)^\alpha T]$,
+				\item $\Fr\qty[D^\alpha T] = (i\xi)^\alpha \Fr(T)(\xi)$,
+				\item $D^\alpha \Fr^{-1}(T) = \Fr^{-1}\qty[(i)^\alpha T]$,
+				\item $\Fr^{-1}\qty[D^\alpha T] = (-i\xi)^\alpha \Fr^{-1}(T)(\xi)$.
+			\end{itemize}
+		\end{field}
+		\end{note}
+		\begin{note}
+			\xplain{63f4f833-aa94-4650-9ef8-d3f0efcb71fc}
+			\tags{}
+			
+			\begin{field}  % Question
+				Wie ist ein linearer Differential Operator $m$-ter Ordnung definiert(mit Multiindex)?
+				Wie wendet man solchen Operator auf eine Distribution?
+			\end{field}
+			
+			\begin{field}  % Answer
+				$L(x,D) = \sum_{\abs{\alpha}=0}^m a_\alpha(x)D^\alpha, \quad a_\alpha \in C^\infty(\Rn), x\in\Rn$
+					
+				$\innerprod{L(x,D)(T), \varphi} \coloneqq \innerprod{T, L^*(x,D)(\varphi)}$
+				
+				$L^*(x,D) = \sum_{\abs{\alpha}=0}^m (-1)^\alpha a_\alpha(x)D^\alpha$
+				
+				$L^*$ Ist der zu $L$ adjungierte Operator. 
+			\end{field}
+			
+		\begin{field}  % Question
+			Definiere eine schwache L"osung einer PDGL.
+		\end{field}
+		
+		\begin{field}  % Answer
+			Betrachte $L(x,D)T =S$, mit $S in D'(\Rn)$. $T\in D'(\Rn)$ ist eine schwache L"osung dieser Gleichung, auf dem Gebiet $G\subseteq \Rn$ falls:
+			\begin{equation*}
+				\forall \varphi \in D(\Rn) \text{ mit } \text{supp}\varphi \subset G:
+				\innerprod{L(x,D)T,\varphi} = S
+			\end{equation*}
+		\end{field}
+			
+		\begin{field}  % Question
+			Wann ist eine Distribution eine \textit{Grundl"osung} bzw. eine \textit{Fundamentall"osung}?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Sei $L(D)$ ein linearer Differentialoperator mit konstanten Koeffizienten.
+			$T\in D'(\Rn)$ ist eine \textit{Grundl"osung} von $L(D)$ falls
+			\begin{equation*}
+				L(D)T = \delta
+			\end{equation*}
+		\end{field}
+			
+		\begin{field}  % Question
+			Wie gelang man zur schwachen L"osung der inhomogen PDGL mit konstanten Koeffizienten, falls die Grundl"osung schon bekannt ist?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Betrachte $L(D)T=S$ mit $S\in D'(\Rn)$. Ist $T \in D'(\Rn)$ eine Grundl"osung der PDGL, d.h. $L(D)T=\delta$, und $R\coloneqq T' * S'$ existiert, dann ist $R$ eine L"osung der inhomogenen PDGL.
+		\end{field}
+			
+		\begin{field}  % Question
+			Wie lautet der Satz von Satz Malgrange/Ehrenpreis?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Jeder lineare Differentialoperator mit konstanten Koeffizienten besitzt eine Grundl"osung. 
+		\end{field}
+		\end{note}
+
+\end{document}

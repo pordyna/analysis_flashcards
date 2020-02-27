@@ -1,0 +1,810 @@
+% !TeX spellcheck = de_DE
+% !TEX encoding = UTF-8 Unicode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The first part of the header needs to be copied
+%       into the note options in Anki.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% layout in Anki:
+\documentclass[9pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{paperwidth=.5\paperwidth,paperheight=100in,left=2em,right=2em,bottom=1em,top=2em}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+ 
+% hyphenation:
+\usepackage[ngerman]{babel}
+
+% encoding:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% packages:
+\usepackage{parskip}
+\usepackage[free-standing-units=true]{siunitx}
+% Writng si units, numbers, list of numbers etc.
+\usepackage{gensymb}
+% Unified typseting of units outside of siuitx
+\usepackage{amsmath}
+\usepackage{amsfonts}  
+% Math features
+\usepackage{esdiff}
+% Typeseting of (partial)derivatives 
+\usepackage{commath}
+% More  derivatives. Not so nice like esdiif but adds
+% \dif comand for upright d in math mode.
+\usepackage{bm}
+% Bold font in math mode
+\usepackage{esint}
+% Some fancy integrals signs. Mutilpe integrals
+\usepackage{enumerate}
+% Different styles for enumerate lists
+\usepackage{multirow}
+% More advanced tabular
+\usepackage{physics}
+% Lots of usefull comannds for physicists. Vektors, nablas etc.
+\usepackage{amssymb, xfrac, bbold}
+% extra fonts and symbols 
+\usepackage{mathtools}
+% extension to amsmath, fixes, meany new tool
+\usepackage{isotope}
+\usepackage{empheq}
+%commands:
+\usepackage{ifthen}
+
+\newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Rk}{\mathbb{R}^k}
+\newcommand{\R}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{R}}
+	{\mathbb{R}^{#1}}}%
+\newcommand{\C}[1]{%
+	\ifthenelse{\equal{#1}{}}
+	{\mathbb{C}}
+	{\mathbb{C}^{#1}}}%	
+\renewcommand{\vec}[1]{\underline{#1}}
+\DeclarePairedDelimiter{\innerprod}\langle\rangle
+\newcommand{\Fr}{\mathcal{F}}
+\newcommand{\Hi}{\mathcal{H}}
+\newcommand{\id}{\mathbb{1}}
+\newcommand{\inv}{^{-1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following part of header NOT to be copied into
+%            the note options in Anki.
+%          ! Anki will throw an errow !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  pdf layout:
+%
+\geometry{paperheight=74.25mm}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper,border shrink=0cm]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+% 
+%  notes, fields, tags:
+%
+\newcommand{\xfield}[1]{
+        #1\par
+        \vfill
+        {\tiny\texttt{\parbox[t]{\textwidth}{\localtag\\\globaltag\hfill\uuid}}}
+        \newpage}
+\newenvironment{field}{}{\newpage}
+\newif\ifnote
+\newenvironment{note}{\notetrue}{\notefalse}
+\newcommand{\localtag}{}
+\newcommand{\globaltag}{}
+\newcommand{\uuid}{}
+\newcommand{\tags}[1]{
+    \ifnote 
+        \renewcommand{\localtag}{#1}
+    \else
+        \renewcommand{\globaltag}{#1}
+    \fi 
+    }
+\newcommand{\xplain}[1]{\renewcommand{\uuid}{#1}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following line again needs to be copied 
+% into Anki:
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tags{mathe2::2sem::hilbertraum, beschrankte-lineare-operatoren}
+
+\begin{note}
+	\xplain{a095d0e5-ba05-4a86-8601-7c56267afc34}
+	\tags{}
+	
+	\begin{field}  % Question
+		Wann ist eine linearer Operator aus $\Hi$ \textit{dicht definiert}?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Wenn $D(A)$ \textit{Definitionsbereich} dicht in $\Hi$ ist.
+	\end{field}
+\end{note}
+	\begin{note}
+		\xplain{8220fc0f-51a5-419d-8b5b-a7a6c8241a58}
+		\tags{6.1.3}
+		
+		\begin{field}  % Question
+			Wie ist ein beschr"ankter Operator definiert?	
+		\end{field}
+		
+		\begin{field}  % Answer
+			Sei $A: D(A) \rightarrow \Hi$ ein linearer Operator. $A$ hei"st beschr"ankt, falls
+			f"ur jede beschr"ankte Menge $M\subset D(A)$ gilt, dass $A[M]$ beschr"ankt ist.
+		\end{field}
+		
+			
+		\begin{field}  % Question
+			Sei $A: D(A) \rightarrow \Hi$ ein linearer Operator. $A$ hei"st stetig, falls
+		\end{field}
+		
+		\begin{field}  % Answer
+			f"ur jede Folge $(\varphi_n)$ in $D(A)$ mit $\varphi_n \rightarrow \varphi \in D(A)$ gilt, dass
+			\begin{equation*}
+				A\varphi_n \rightarrow A\varphi
+			\end{equation*}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{c8e07072-d74a-4c22-97cf-551bf429f5d6}
+		\tags{6.1.4, satz}
+		
+		\begin{field}  % Question
+			Sei $A:D(A) \rightarrow \Hi$ ein linearer Operator. Welche Aussagen sind "aquivalent zu
+			\begin{itemize}
+				\item $A$ ist beschr"ankt ?
+			\end{itemize}
+		\end{field}
+		
+		\begin{field}  % Answer
+			\begin{itemize}
+				\item $\exists c>0 : \forall \varphi \in D(A) \norm{A\phi} \leq c\norm{phi}$,
+				\item $A$ ist stetig,
+				\item $A$ ist stetig in 0.
+			\end{itemize}
+		\end{field}
+		
+		\begin{field}  % Question
+			Wann l"asst sich ein linearer Operator $A$ auf ganz $\Hi$ fortsetzen?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Falls $D(A)$ dicht in $\Hi$ und $A$ stetig, l"asst sich $A$ \textbf{stetig} auf $\Hi$ fortsetzen.
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{62c8419e-280e-458d-bd7f-fe2a0f0f0ddd}
+		\tags{6.1.5, 6.1.6, 6.1.7, operatornorm}
+		
+		\begin{field}  % Question
+			Was ist $B(\Hi)$? 
+		\end{field}
+		
+		\begin{field}  % Answer
+			$B(\Hi)$ ist der Vektorraum aller \textbf{beschr"ankten} linearen Operatoren auf $\Hi$.
+			Es ist ein Vektorraum ,da f"ur ein skalar $c$ und zwei beschr"ankte Operatoren $A_1, A_2$
+			$A_1 + A_2$ und $cA$ auch beschr"ankt sind. 
+		\end{field}
+		
+			
+		\begin{field}  % Question
+			Wie ist die Operatornorm auf $B(\Hi)$ definiert? 
+		\end{field}
+		\begin{field}  % Answer
+			\begin{equation*}
+				\norm{T} \coloneqq \ \text{inf}\qty{c>0 \ | \ \forall \varphi \in \Hi: \norm{T\varphi} \leq c\norm{\varphi}}
+			\end{equation*}
+		\end{field}
+			
+		\begin{field}  % Question
+			Was besagt der Satz Norm auf $B(\Hi)$, au"ser dass die definierte Operatornorm tats"achlich einer Norm auf $(\Hi)$ ist? 
+		\end{field}
+		
+		\begin{field}  % Answer
+			$\qty(B(\Hi), \norm{\cdot})$ ist ein Banach-Raum.
+			
+			Es gilt die \textit{Submultiplikativit"at} der Norm, also $\norm{AB} \leq \norm{A}\norm{B}$.
+		\end{field}
+			
+		\begin{field}  % Question
+			Welche "aquivalente zu 
+			\begin{equation*}
+			\norm{T} \coloneqq \ \text{inf}\qty{c <0 \ | \ \forall \varphi \in \Hi
+			\norm{T\varphi} \leq \norm{\varphi}}
+			\end{equation*}
+		 Charakterisierungen der Operatornorm auf $B(\Hi)$ gibt es (Es sind 4.)?
+		\end{field}
+		
+		\begin{field}  % Answer
+			\begin{align*}
+				\norm{T} =& \ \text{sup}\qty{\norm{T\varphi} \ | \ \varphi \in \Hi, \norm{\varphi} \leq 1} \\
+				\norm{T} =& \ \text{sup}\qty{\norm{T\varphi} \ | \ \varphi \in \Hi, \norm{\varphi} = 1} \\
+				\norm{T} =& \ \text{sup}\qty{\norm{T\varphi} \ | \ \varphi \in \Hi, \norm{\varphi} < 1} \\
+				\norm{T} =& \ \text{sup}\qty{\abs{\innerprod{\psi, T\varphi}} \ | \ \psi, \varphi \in \Hi, \qty(\norm{\psi} \leq 1 \wedge \norm{\varphi} \leq 1)} \\
+			\end{align*}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{b514ddca-b0be-4779-b1ea-10bc1ff4d0f9}
+		\tags{6.1.8}
+		
+		\begin{field}  % Question
+			Ein Operator aus $B(\Hi)$ hei"st \textit{endlich-dimensional}, wenn ...
+		\end{field}
+		
+		\begin{field}  % Answer
+			... der Bildbereich von diesem Operator endlich-dimensional ist.
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{0024bfb9-70b6-40a3-8cb4-8675d0a285cd}
+		\tags{6.1.9,6.1.10, inverse}
+		
+		\begin{field}  % Question
+			Wann existiert der inverse Operator zu einem linearen Operator $A$?  
+		\end{field}
+		
+		\begin{field}  % Answer
+			Falls $A: D(A) \rightarrow \text{im}A$ injektiv. Dann ist $A^{-1}$ auch linear.
+		\end{field}
+			
+		\begin{field}  % Question
+			Was besagt der Satz "uber den inversen Operator?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Wenn $A\in B(\Hi), \ \text{im}A=\Hi$ und $A^{-1}$ existiert, dann ist $A^{-1} \in B(\Hi)$.
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{d5cd0fc1-fa83-416d-b72f-f89f21b26f67}
+		\tags{6.2.1, adjungierte-operator}
+		
+		\begin{field}  % Question
+			Was besagt der Sagt "uber den adjungierten Operator?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Zu jedem $T \in B(\Hi)$ existiert genau ein $T^*\in B(\Hi)$ mit folgender Eigenschaft:
+			\begin{equation*}
+				\forall \varphi, \psi \in \Hi: \quad \innerprod{\varphi, T\psi} = \innerprod{T^*\varphi, \psi}
+			\end{equation*}
+			$T^*$ hei"st der zu $T$ adjungierte Operator. Es gilt: $\norm{T}= \norm{T^*}$
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{3e608f64-383c-47f7-a110-70cb0066c5e9}
+		\tags{6.2.2}
+		
+		\begin{field}  % Question
+			$(B(\Hi), \norm{\cdot})$ ist eine $C^*$-Algebra mit Eins-Element, d.h. ...
+		\end{field}
+		
+		\begin{field}  % Answer
+			...
+			\footnotesize
+			\begin{enumerate}[i)]
+				\item $B(\Hi)$ ist ein $\C{}$-Vektorraum mit einer \textbf{Multiplikation} (assoziative, bilineare Abbildung)
+				\begin{equation*}
+					B(\Hi) \times B(\Hi) \ni (S,T) \mapsto S \circ T
+				\end{equation*}
+				Als Vektorraum mit \textbf{assoziativer bilinearer} Abbildung 
+				ist $B(\Hi)$ eine Abbildung. Das Eins-Element dieser Algebra ist Einheitsoperator $\mathbb{1}$.
+				\item $(B(\Hi), \norm{\cdot})$ ist eine \textbf{normierte} Algebra, d.h. $\norm{\cdot}$ ist \textbf{submultiplikativ}:
+				\begin{equation*}
+					\forall S,T \in B(\Hi): \norm{ST} \leq \norm{S} \norm{T}
+				\end{equation*}
+				Es ist eine \textbf{Banach-Algebra} (also vollst"andig und normiert).
+				\item $B(\Hi)$ ist eine \textbf{$^*$-Algebra}.
+				\item Die Norm erf"ullt die \textbf{${C^*}$-Algebra}, d.h. $\forall T \in B(\Hi): \norm{T^*T} = \norm{T}^2$.
+			\end{enumerate}
+		\end{field}
+			
+		\begin{field}  % Question
+			$B(\Hi)$ ist eine \textbf{$^*$-Algebra}, d.h. ...
+		\end{field}
+		
+		\begin{field}  % Answer
+			... es gibt eine Abbildung $*: B(\Hi) \rightarrow B(\Hi), \ \ T\mapsto T^*$ mit
+			
+			$\forall S,T \in B(\Hi), \forall \lambda \in \C{}:$
+			\begin{enumerate}
+				\item $\qty(\lambda S + T)^* = \bar{\lambda}S^* + T^*$,
+				\item $\qty(ST)^* = T^*S^*$,
+				\item $S^{**} = S$
+			\end{enumerate}
+		Eine solche Abbildung hei"st \textit{Involution}.
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{73250023-243d-431b-9f96-3cebc5b78556}
+		\tags{6.2.5}
+		
+		\begin{field}  % Question
+			Wie lautet der Satz "uber das orthogonale Komplement des Bildes?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Sei $T\in B(\Hi)$. Dann gilt
+			\begin{align*}
+				\qty(\text{im} T)^\perp =& \ \text{ker}T^*\\
+				\qty(\text{im} T^*)^\perp =& \ \text{ker}T
+			\end{align*}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{f5c2e986-17a9-48b7-9d81-a42de0547888}
+		\tags{}
+		
+		\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{selbstadjungiert}, wenn...
+		\end{field}
+		
+		\begin{field}  % Answer
+		... $T=T^*$
+		\end{field}
+	
+				\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{positiv}, wenn...
+		\end{field}
+		
+		\begin{field}  % Answer
+			...$\forall \varphi \in \Hi: \innerprod{T\varphi, \varphi} \geq 0$
+		\end{field}
+	
+				\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{unit"ar}, wenn...
+		\end{field}
+		
+		\begin{field}  % Answer
+			... $T^{-1} = T^*$
+		\end{field}
+	
+				\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{normal}, wenn...
+		\end{field}
+		
+		\begin{field}  % Answer
+			... $T^*T=TT^*$
+		\end{field}
+	
+				\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{Projektion}, wenn...
+		\end{field}
+		
+		\begin{field}  % Answer
+			... $T^2=T$
+		\end{field}
+	
+				\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{}, wenn...
+		\end{field}
+		
+		\begin{field}  % Answer
+			...
+		\end{field}
+	
+				\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{Orthogonalprojektion}, wenn...
+		\end{field}
+		
+		\begin{field}  % Answer
+			... $T$ Projektion ist und $T=T^*$
+		\end{field}
+		\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{isometrich}, wenn...
+		\end{field}
+	
+		\begin{field}  % Answer
+			... $\forall \varphi \in \Hi: \norm{T\varphi} = \norm{T}$
+		\end{field}
+		\begin{field}  % Question
+			Ein Operator $T\in B(\Hi)$ hei"st \textit{partiell isometrisch}, wenn...
+		\end{field}
+
+		\begin{field}  % Answer
+			... eine Zerlegung $\Hi = \Hi_1 \oplus \Hi_2$ existiert mit $T:\Hi_1\rightarrow\Hi$ ist isometrisch
+			und $\Hi_2 = \ \text{ker}T$.
+			
+			$\Hi_1$ ist der \textit{Anfangsbereich}  und $\text{im}T$ der \textit{Endbereich} der partiellen Isometrie. 
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{a16a3dd4-e1ab-4e92-a6bd-a22a39844a31}
+		\tags{6.2.7}
+		
+		\begin{field}  % Question
+			Wann existiert ein - zum unbeschr"ankten Operator - adjungierte Operator?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Wenn der Operator dicht definiert ist.
+		\end{field}
+			
+		\begin{field}  % Question
+			Sei $T:D(T)\rightarrow \Hi$ ein dicht definierter Operator. Es existiert also der zu $T$ adjungierte Operator 
+			$T^*:D(T^*) \rightarrow \Hi$. Wie ist $T^*$ definiert? 
+		\end{field}
+		
+		\begin{field}  % Answer
+			$D(T*) = D^*\coloneqq \qty{\psi \in \Hi \ | \ D(T) \ni \mapsto \innerprod{\psi, T\varphi} \in \C{} \text{ ist stetig}}$
+			
+			$\forall \varphi \in D(T) \forall \psi \in D^*: \innerprod{T^*\psi, \phi} = \innerprod{\psi, T\phi}$			
+		\end{field}
+		
+	\begin{field}  % Question
+		Welche wichtige Bemerkungen gibt es zu   unbeschr"ankten adjungierten Operatoren?
+	\end{field}
+	
+	\begin{field}  % Answer
+		\begin{itemize}
+			\item Aus "$T$ dicht definiert"  folgt \textbf{nicht}, dass auch $T^*$ dicht definiert!
+			\item Falls $T^*$ nicht dicht definiert ist, kann man $T^{**}$ 	nicht eindeutig definieren.
+			\item Auch wenn $D(T^*)$ dicht in $\Hi$ gilt nicht unbedingt, dass $T^{**} = T$!!
+		\end{itemize}
+	\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{21f44b91-9d51-45bb-b869-36f9fbb8415b}
+		\tags{6.2.9}
+		
+		\begin{field}  % Question
+			Was bedeuten (und was sind die Unterschiede): \textit{hermitesch}, \textit{symmetrich} und \textit{selbstadjungiert}, f"ur unbeschr"ankte Operatoren?
+			
+		\end{field}
+		
+		\begin{field}  % Answer
+			\begin{itemize}
+				\item \textit{hermitesch} oder \textit{formal adjungiert}: $\forall \varphi, \psi \in D(T): \innerprod{T\psi,\varphi}
+				= \innerprod{\psi, T\varphi}$. $T$ muss hier \textbf{nicht} dicht definiert sein!
+				\item \textit{symmetrisch}: $T$ hermitesch und dicht definiert. Also es gilt insbesondere $T\subset T^*$.
+				\item \textit{selbstadjungiert} :$T$ dicht definiert und sowohl $D(T)\subset D(T^*)$, als auch $D(T^*) \subset D(T)$,
+				also $T^*=T$ gilt. Insbesondere $D(T^*) = D(T)$ und $T$ \textit{symmetrisch}.
+				
+			\end{itemize}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{e1ec3a29-1efb-4c61-8604-06bf284919cf}
+		\tags{6.3, spektrum}
+		
+		\begin{field}  % Question
+			Wie ist die \textit{Resolventenmenge} un das \textit{Spektrum} eines beschr"ankten Operators definiert?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Sei $T \in B(\Hi)$,
+			\begin{enumerate}[i)]
+				\item Die Menge 
+				\begin{equation*}
+					\varrho(T) \coloneqq \qty{\lambda \in C{} \ | \ \exists \qty(T-\lambda \id)\inv \in B(\Hi)}
+				\end{equation*}
+				hei"st \textit{Resolventenmenge von $T$}, f"ur $\lambda \in \varrho(T)$ gilt also: 
+				$(T-\lambda \id): \Hi \rightarrow \Hi$ ist bijektiv.
+				
+				Der Operator $R_\lambda(T) \coloneqq(T-\lambda\id)\inv$ hei"st \textit{Resolvente von $T$ im Punkt $\lambda$}.
+				\item Die Menge $\sigma(T)\coloneqq \C{}\setminus\varrho(T)$ hei"st \textit{Spektrum von $T$}.
+			\end{enumerate}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{03cf9f0b-a62c-447a-97f2-bd6fe8a534e7}
+		\tags{6.3.3 Resolventenmenge}
+		
+		\begin{field}  % Question
+			Was sind die Aussagen des Satzes "uber die Eigenschaften der Resolventenmenge?
+		\end{field}
+		
+		\begin{field}  % Answer
+			\footnotesize
+			\begin{enumerate}[i)]
+				\item F"ur $ \lambda, \mu \in \varrho(T)$ kommutieren die Operatoren $R_\lambda(T)$ und $R_\mu(T)$ und es gilt die \textit{Resolventengleichung}
+				\begin{equation*}
+					R_\lambda(T) - R_\mu(T) = (\lambda - \mu)R_\lambda(T) \cdot R_\mu(T)
+				\end{equation*}
+				\item F"ur $\lambda$ mit $\abs{\lambda} > \norm{T}$ gilt $\lambda \in \varrho(T)$. $R_\lambda(T)$ wird durch die
+				\textbf{\textit{Neumannsche Reihe}} beschrieben
+				\begin{equation*}
+					R_\lambda(T) = - \sum^\infty_{k=0} \frac{T^k}{\lambda^{k+1}}
+				\end{equation*}
+				Es gilt die Absch"atzung $\norm{\qty(T-\lambda\id)\inv} \leq \frac{1}{\abs{\lambda} - \norm{T}}$.
+				\item F"ur $\lambda_0 \in \varrho(T)$ gilt: $\lambda \in \C{}, \abs{\lambda - \lambda_0}<\norm{R_{\lambda_0}}\inv \Rightarrow$ die Reihe
+				\begin{equation*}
+					R_{\lambda_0}(T) \qty[\id + \sum^\infty_{k=0}(\lambda - \lambda_0)^k \qty(R_{\lambda_0}(T))^k]
+				\end{equation*}
+				konvergiert und es ist gleich $R_\lambda(T)$. 	Also $\lambda \in \varrho(T)$ und $\varrho(T)$ ist offen.
+			\end{enumerate}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{bb06deb4-96be-4cad-ac9f-d46551679abd}
+		\tags{6.3.4}
+		
+		\begin{field}  % Question
+			Was besagt der Satz "uber die Kompaktheit des Spektrums?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Sei $T\in B(\Hi)$. Das Spektrum $\sigma(T)$ ist eine kompakte, nichtleere Teilmenge von $\C{}$. Es gilt
+			$\sigma(T) \subset 
+			qty{\lambda \in \C{} \ | \ \abs{\lambda} \leq \norm{T}}$
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{471d3474-c216-46e9-b61c-097278aa2327}
+		\tags{6.3.5}
+		
+		\begin{field}  % Question
+			Wie ist ein Punktspektrum $\sigma_p$ definiert?
+		\end{field}
+		
+		\begin{field}  % Answer
+			\begin{align*}
+				\sigma_p \coloneqq& \qty{\lambda \in \C{} \ | \ (T-\lambda\id) \text{ nicht injektiv}} \\
+						 \coloneqq& \qty{\lambda \in \C{} \ | \ \exists \varphi \in \Hi\setminus \qty{0}: T\varphi = \lambda \varphi} 
+			\end{align*}
+		\end{field}
+			
+		\begin{field}  % Question
+			Wie ist das stetige Spektrum eines Operators $T$ definiert?
+		\end{field}
+		
+		\begin{field}  % Answer
+			\begin{align*}
+				\sigma_c(T) \coloneqq& \big\{\lambda \in \C{} \ | \ (T-\lambda \id) \text{ injektiv, nicht surjektiv, } \\
+										    &\quad(T-\lambda\id)[\Hi] \text{ dicht in } \Hi\big\} \\
+							\coloneqq& \big\{ \lambda \in \C{} \ | D\coloneqq (T-\lambda\id)[\Hi] \text{ dicht in } \Hi, \\
+											&\quad\exists(T-\lambda\id)\inv : D \rightarrow \Hi,  \text{ nicht dicht in } \Hi \big\}
+			\end{align*}
+		\end{field}
+			
+		\begin{field}  % Question
+			Wie ist das Restspektrum von einem Operator $T$ definiert?
+		\end{field}
+		
+		\begin{field}  % Answer
+			\begin{align*}
+			\sigma_c(T) \coloneqq& \big\{\lambda \in \C{} \ | \ (T-\lambda \id) \text{ injektiv, } \\
+			&\quad(T-\lambda\id)[\Hi] \text{ nicht dicht in } \Hi\big\} \\
+			\coloneqq& \qty{\lambda \in \C{} \ | \ \lambda \notin \sigma_p, (T-\lambda\id)[\Hi] \text{ nicht dicht in }
+				\Hi}
+			\end{align*}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{c8b5665b-208a-481b-bd1b-b865b4bbdfc8}
+		\tags{6.3.6}
+		
+		\begin{field}  % Question
+			Zusammenhang Spektrum adjungierter und nicht adjungierter beschr"ankten Operatoren:
+		\end{field}
+		
+		\begin{field}  % Answer
+			\begin{align*}
+				\sigma(T^*) =& \overline{\sigma(T)} \\
+				\varrho(T^*) =& \overline{\varrho(T)}
+			\end{align*}
+			hier $\overline{\quad}$ c.c. der Elemente.
+			\begin{equation*}
+				R_{\bar{\lambda}}(T^*)= R_\lambda(T)
+			\end{equation*}
+			\begin{align*}
+				\lambda \in \sigma_p &\Rightarrow \bar{\lambda} \in \sigma_p(T*) \cup \sigma_r(T^*) \\
+				\lambda \in \sigma_r(T) & \Rightarrow \bar{\lambda} \in \sigma_p(T^*) \\
+				\lambda \in \sigma_c(T) & \Rightarrow \bar{\lambda} \in \sigma_c(T^*) 
+			\end{align*}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{fbceb1aa-ca13-4f80-ac7e-dfcdc6b9b554}
+		\tags{6.4}
+		
+		\begin{field}  % Question
+			Was gilt f"ur Spektrum im Spezialfall der \textbf{selbstadjungierten} beschr"ankten Operatoren? 
+		\end{field}
+		
+		\begin{field}  % Answer
+			Sei $T$ =$T^* \in B(\Hi)$. Dann gilt:
+				\begin{enumerate}[i)]
+					\item $\sigma_r(T) = \emptyset$,
+					\item f"ur $\lambda \in \C{}$ gilt:
+					\begin{equation*}
+						\lambda \in \varrho(T) \Leftrightarrow \exists c>0: \forall \varphi \in \Hi: \norm{\qty(T-\lambda\id)\varphi}
+						\geq c\norm{\varphi}
+					\end{equation*}
+					\item Weylsches Kriterium: F"ur $\lambda \in \C{}$ gilt:
+						\begin{align*}
+							\lambda \in \sigma(T) \Leftrightarrow& \exists \text{ Folge } (\varphi_n) \in \Hi \qty(\text{ mit }
+							\forall n \in \N{}: \norm{\varphi_n}=1) \\ &\qquad\text{ und }\norm{(T-\lambda \id)\varphi_n} \overset{n\rightarrow \infty}{\rightarrow} 0 
+						\end{align*}
+						\item $\sigma(T)\subset \R{}$ und die Eigenvektoren zu paarweise verschiedenen Eigenwerten stehen orthogonal aufeinander. 
+				\end{enumerate}
+		\end{field}
+	\end{note}
+	\begin{note}
+		\xplain{64f8c427-8cfb-487e-a0f3-d9878517ecd7}
+		\tags{6.4.2}
+		
+		\begin{field}  % Question
+			Wie lautet der Satz "uber den Rand des Spektrums?
+		\end{field}
+		
+		\begin{field}  % Answer
+			Sei $T=T^* \in B(\Hi)$. Dann gilt $\norm{T} \in \sigma(T)$ oder $-\norm{T} \in \sigma(T)$.
+		\end{field}
+	\end{note}
+\begin{note}
+	\xplain{d3eb783b-ec94-4980-8b2a-f7a76018c965}
+	\tags{6.4.3}
+	
+	\begin{field}  % Question
+		Wie lautet das Lemma "uber die Darstellung von $\abs{T}$, falls $T$ ein selbstadjungierter Operator?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Seit $T=T^* \in B(\Hi)$. Dann gilt:
+		\begin{equation*}
+			\norm{T}= \text{sup}\qty{\abs{\innerprod{\varphi,T\varphi}} \ | \ \norm{\varphi} \leq 1}
+		\end{equation*}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{c394653d-6873-4c47-9291-141276a64b82}
+	\tags{7.1}
+	
+	\begin{field}  % Question
+		Sei $\Hi$ ein Hilbertraum. Eine Menge $M\subset\Hi$ hei"st (folgen-) kompakt, wenn 
+	\end{field}
+	
+	\begin{field}  % Answer
+		jede Folge $(\psi_n)_{n\in \N{}}$ in $m$ ein Teilfolge $(\psi_nk)_{k\in \N{}}$ enth"alt, die gegen ein Element aus $M$ konvergiert. 
+	\end{field}
+		
+	\begin{field}  % Question
+		Sei $\Hi$ ein Hilbertraum. Eine Menge $M\subset\Hi$ hei"st relativ kompakt, wenn 
+	\end{field}
+	
+	\begin{field}  % Answer
+		der Abschluss $\overline{M}$ kompakt ist, mit anderen Worten, jde Folge in $M$ enth"alt eine Teilfolge die gegen ein Element aus $\Hi$ konvergiert. 
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{22856de0-3411-435a-9a10-a4dbb48ee976}
+	\tags{7.1.2}
+	
+	\begin{field}  % Question
+    	Ein linearer Operator $T: \Hi \rightarrow \Hi$ hei"st kompakt, 
+	\end{field}
+	
+	\begin{field}  % Answer
+		wenn f"ur jede beschr"ankte Menge $M\subset\Hi$ gilt, dass
+		$T[M]$ eine relativ kompakte Menge ist.
+	\end{field}
+\end{note}
+\begin{note}
+\xplain{a0f8c202-a1ca-4741-ac92-5460c7f963c2}
+\tags{}
+
+\begin{field}  % Question
+	$K(\Hi)$ ist ein... in $B(\Hi)$.
+\end{field}
+
+\begin{field}  % Answer
+	abgeschlossenes zwei-seitiges $^*$-Ideal
+\end{field}
+
+\begin{field}  % Question
+	$K(\Hi)$ ist eine abgeschlossenes zwe-seitiges $^*$-Ideal, d.h. ...
+\end{field}
+
+\begin{field}  % Answer
+	...
+	\begin{enumerate}[a)]
+		\item \label{1} $K(\Hi)$ ist ein Vektorraum.
+		\item \label{2} $\forall (T_n) \in K(\Hi)$ mit $\exists T \in B(\Hi), T_n \rightarrow T$ (bzgl. der Operatornorm) gilt: $T\in K(\Hi)$.
+		\item \label{3} Idealeigenschaft: $\qty(T\in K(\Hi) \wedge S \in B(\Hi)) \Rightarrow$ \\ 
+		\hspace*{90pt}$\Rightarrow\qty(ST \in K(\Hi) \wedge TS \in K(\Hi))$.
+		\item \label{4} $T\in K(\Hi) \Rightarrow T^* \in K(\Hi)$
+		
+		Ideal = \ref{1} + \ref{3}; *-Ideal = Ideal + \ref{4}; Abgeschlossenheit = \ref{2}, Zwei-Seitigkeit = \ref{3} f"ur TS \textbf{und} ST.
+	\end{enumerate}	
+\end{field}
+	
+\begin{field}  % Question
+	Welche bezielhung gilt zwischen $F(\Hi)$, also den Raum der endlich-dimensionalen Operatoren, und $K(\Hi)$?
+\end{field}
+
+\begin{field}  % Answer
+	\begin{itemize}
+		\item $F(\Hi) \subseteq K(\Hi)$
+		\item $F(\Hi)$ liegt dicht in $K(\Hi)$
+	\end{itemize}
+\end{field}
+\end{note}
+\begin{note}
+	\xplain{f523d7a1-96ed-4dad-addb-b26c2802745f}
+	\tags{7.2.1}
+	
+	\begin{field}  % Question
+		Was besagt der Satz "uber das Spektrum der kompakten selbstadjungierten Operatoren?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sie $\Hi$ ein unendlich-dimensionaler Hilbertraum und $T=T^* \in K(\Hi)$. Dann gilt: 
+		\begin{enumerate}[i)]
+			\item $0 \in \sigma(T)$,
+			\item jedes $\lambda \in \sigma(T)$ ist ein EIgenwert endlicher Vielfachheit,
+			\item ist $T$ nicht von endlichem Rang, so bilden die Eigenwerte von $T$ eine Nullfolge.
+		\end{enumerate}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{fb2138d7-0fbb-455c-9d0d-7266a21c89d4}
+	\tags{7.2.2}
+	
+	\begin{field}  % Question
+		Was besagt der Spektraltheorem f"ur kompakte selbstadjungierte Operatoren?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $T=T^*> \in K(\Hi), \lambda_1 \lambda_2 \cdots$ seien die von Null verschiedenen Eigenwerte. Sei $\abs{\lambda_1} \geq \abs{\lambda_2}\geq \dots$. Seien $P_i$ die (endlich-dimensionalen) orthogonalen Projektionen auf die Eigenr"aume zu $\lambda_i$. Dann gilt:
+		\begin{equation*}
+			T = \sum_{j} \lambda_jP_j
+		\end{equation*}
+		Falls T nicht endlich-dimensional ist (d.h. abz"ahlbar viele Eigenwerte ungleich Null), dann konvergiert die unendliche Reihe bzgl. der Operatornorm.
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{27aa296d-0be5-4094-a837-a0c32a57d34e}
+	\tags{7.2.3}
+	
+	\begin{field}  % Question
+		Wie lautet der Hilbert-Schmidtscher Entwicklungssatz?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Sei $T=T^* \in K(\Hi)$. Dann existiert eine Folge $(\mu_i)$ in $\R{}$ (endlich oder Nullfolge) und ein Orthonormalsystem $(\phi_i)$ in $\Hi$ so, dass
+		\begin{equation*}
+			\forall \varphi in \Hi: \quad T\varphi = \sum_i \mu_i \innerprod{\varphi_i, \varphi}\varphi_i
+		\end{equation*}
+	\end{field}
+\end{note}
+\begin{note}
+	\xplain{4f7ece72-2a59-4131-b755-2e54e0310ecb}
+	\tags{7.3.1}
+	
+	\begin{field}  % Question
+		Wie ist ein Spurklassenoperator definiert?
+	\end{field}
+	
+	\begin{field}  % Answer
+		Ein kompakter, positiver, selbstadjungierter Operator $T: \Hi \rightarrow \Hi$ hei"st \textit{nuklear} oder \textit{Spurklassenoperator}, wenn f"ur eine ONB $(\psi_k)$ von $\Hi$ gilt:
+		\begin{equation*}
+			\sum _{k=1}^\infty \innerprod{\psi_k, T\psi_k} < \infty
+		\end{equation*}
+	\end{field}
+		
+	\begin{field}  % Question
+		Ein Spurklassenoperator hei"st \textit{ Dichteoperator}, wenn:
+	\end{field}
+	
+	\begin{field}  % Answer
+		\begin{equation*}
+			\sum_{k=1}^\infty \innerprod{\psi_k, T\psi_k} = 1
+		\end{equation*}
+		$(\psi_k)$ eine ONB.
+	\end{field}
+\end{note}
+\end{document}
