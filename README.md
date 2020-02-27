@@ -8,7 +8,7 @@ Dann braucht ihr nur noch die `.apkg`Datei im Anki zu öffnen. Alternativ könnt
 Auf Nachfrage kann ich auch den Deck mit den vor-generierten Karten hochladen, dass sollte, solange ihr die Karten nicht bearbeitet, auch ohne Latex funktionieren.
 Die Datei wird nur eventuell ziemlich groß, da alle Karteikarten dann als Bilder gespeichert sind. 
 
-## Wenn ihr die Karteikarten editieren, erweitern, kopieren möchtet:
+## Wenn ihr die Karteikarten editieren, erweitern, korigieren möchtet:
 Die tex Dateien lassen sich in Anki mit dem Plugin( https://tentativeconvert.github.io/LaTeX-Note-Importer-for-Anki/) importieren. 
 Der Plugin erlaubt es die Karteikarten in einer Tex Datei zu editieren, statt es direkt im Anki zu machen. Das ist viel effektiver. 
 Die Karteikarten lassen sich auch updaten, ohne dass euer Fortschritt bei Anki verloren geht.
